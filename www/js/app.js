@@ -7,6 +7,10 @@
 // 'MusaGT.controllers' is found in controllers.js
 angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
 
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom');
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -61,14 +65,14 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
   })
 
   .state('tab.mapa', {
-      url: '/mapa',
-      views: {
-        'tab-mapa': {
-          templateUrl: 'templates/mapa/tab-mapa.html',
-          controller: 'MapaCtrl'
-        }
+    url: '/mapa',
+    views: {
+      'tab-mapa': {
+        templateUrl: 'templates/mapa/tab-mapa.html',
+        controller: 'MapaCtrl'
       }
-    })
+    }
+  })
 
   .state('tab.eventos', {
     url: '/eventos',
