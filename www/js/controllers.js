@@ -1,28 +1,40 @@
-angular.module('starter.controllers', [])
+angular.module('MusaGT.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('MapaCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('MuseosCtrl', function($scope, Chats) {
+  $scope.showSearchBar = false;
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  $scope.$on('$ionicView.enter', function(e) {});
+
+  /**
+    Metodo que muestra/oculta la barra de búsqueda
+  */
+  $scope.searchBar = function() {
+    if ($scope.showSearchBar) {
+      $scope.showSearchBar = false;
+    } else {
+      $scope.showSearchBar = true;
+    }
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('MuseoCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('EventosCtrl', function($scope) {
+  $scope.showSearchBar = false;
+
+  /**
+    Metodo que muestra/oculta la barra de búsqueda
+  */
+  $scope.searchBar = function() {
+    if ($scope.showSearchBar) {
+      $scope.showSearchBar = false;
+    } else {
+      $scope.showSearchBar = true;
+    }
   };
+  
 });

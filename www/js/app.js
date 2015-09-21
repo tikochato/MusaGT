@@ -1,11 +1,11 @@
-// Ionic Starter App
+// Ionic MusaGT App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'MusaGT' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+// 'MusaGT.services' is found in services.js
+// 'MusaGT.controllers' is found in controllers.js
+angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -40,46 +40,47 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.museos', {
+    url: '/museos',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-museos': {
+        templateUrl: 'templates/museos/tab-museos.html',
+        controller: 'MuseosCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+  .state('tab.museos-detail', {
+    url: '/museos/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-detail.html',
+        controller: 'MuseoCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    }
+  })
+
+  .state('tab.mapa', {
+      url: '/mapa',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-mapa': {
+          templateUrl: 'templates/mapa/tab-mapa.html',
+          controller: 'MapaCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.eventos', {
+    url: '/eventos',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-eventos': {
+        templateUrl: 'templates/eventos/tab-eventos.html',
+        controller: 'EventosCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/museos');
 
 });

@@ -1,5 +1,16 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Museos">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-ios-search" ng-click="searchBar()"></button>
+    <button class="button button-icon ion-android-more-vertical" ng-click="newEvent()">
+    </button>
+  </ion-nav-buttons>
   <ion-content class="padding">
+    <div class="bar bar-header item-input-inset" ng-show="showSearchBar">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input ng-model="searchText" placeholder="Buscar" type="search">
+      </label>
+    </div>
     <div class="list card">
       <div class="item item-divider">Recent Updates</div>
       <div class="item item-body">
