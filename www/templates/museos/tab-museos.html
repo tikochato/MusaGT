@@ -1,7 +1,7 @@
 <ion-view view-title="Museos">
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-ios-search" ng-click="searchBar()"></button>
-    <button class="button button-icon ion-android-more-vertical" ng-click="newEvent()">
+    <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)">
     </button>
   </ion-nav-buttons>
   <ion-content class="padding">
@@ -10,22 +10,6 @@
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input ng-model="searchText" placeholder="Buscar" type="search">
       </label>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
-      </div>
     </div>
     <div class="list card">
       <div class="item item-divider">Upcoming</div>
