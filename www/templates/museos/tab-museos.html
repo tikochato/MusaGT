@@ -1,22 +1,28 @@
 <ion-view view-title="Museos">
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-ios-search" ng-click="searchBar()"></button>
-    </button>
-  </ion-nav-buttons>
-  <ion-content class="padding">
-    <div class="bar bar-header item-input-inset" ng-show="showSearchBar">
-      <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input ng-model="searchText" placeholder="Buscar" type="search">
-      </label>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
-    </div>
-  </ion-content>
+  </button>
+</ion-nav-buttons>
+<ion-content></ion-content>
+<ion-pane style='top: 50px;'>
+  <div class="bar bar-header item-input-inset" ng-show="showSearchBar">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input ng-model="searchText" placeholder="Buscar" type="search">
+    </label>
+  </div>
+  <div class="list">
+    <div class="item item-divider">
+      <hscroller>
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos1"></hcard>
+      </a>
+    </hscroller>
+  </div>
+  <div class="item item-divider">
+    <hscroller>
+      <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos2"></hcard>
+    </a>
+  </hscroller>
+</div>
+</ion-pane>
 </ion-view>

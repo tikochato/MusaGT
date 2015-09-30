@@ -55,7 +55,7 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
   })
 
   .state('tab.museos-detail', {
-    url: '/museos/:museoId',
+    url: '/museos-detail/:museoId',
     views: {
       'tab-museos': {
         templateUrl: 'templates/museos/museo-detail.html',

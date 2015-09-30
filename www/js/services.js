@@ -66,7 +66,7 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo de los Niños',
     tipoMuseo: 3,
     descripcion: 'descripcion',
-    imagen: 'img/museos/de_los_niños/0.jpg'
+    imagen: 'img/museos/de_los_ninos/0.jpg'
   }, {
     id: 7,
     nombre: 'Museo Arquidiocesano de Santiago de Guatemala',
