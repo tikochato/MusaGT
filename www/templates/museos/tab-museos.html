@@ -6,21 +6,22 @@
 <ion-content></ion-content>
 <ion-pane style='top: 50px;'>
   <div class="bar bar-header item-input-inset" ng-show="showSearchBar">
-    <label class="item-input-wrapper">
-      <i class="icon ion-ios-search placeholder-icon"></i>
-      <input ng-model="searchText" placeholder="Buscar" type="search">
-    </label>
-  </div>
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input ng-model="searchBar.searchText" placeholder="{{LABEL_SEARCH}}" type="search">
+      </label>
+      <i class="icon placeholder-icon ion-ios-close-outline" on-touch="searchBar.searchText = ''"></i>
+    </div>
   <div class="list">
     <div class="item item-divider">
       <hscroller>
-        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos1"></hcard>
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos1 | filter:searchBar.searchText" type="item-text-wrap"></hcard>
       </a>
     </hscroller>
   </div>
   <div class="item item-divider">
     <hscroller>
-      <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos2"></hcard>
+      <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos2 | filter:searchBar.searchText" type="item-text-wrap"></hcard>
     </a>
   </hscroller>
 </div>
