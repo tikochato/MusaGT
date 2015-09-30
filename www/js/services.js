@@ -1,47 +1,111 @@
 angular.module('MusaGT.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
+.factory('Museos', function() {
+  var tipoMuseos = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    tipo: 'Museo Arqueológico'
+  },{
+    id: 1,
+    tipo: 'Museo de Patrimonio Industrial'
+  },{
+    id: 2,
+    tipo: 'Museo de Patrimonio Histórico'
+  },{
+    id: 3,
+    tipo: 'Museo de Ciencia y Tecnología'
+  },{
+    id: 4,
+    tipo: 'Museo de Religión'
+  },{
+    id: 5,
+    tipo: 'Museo de Patrimonio Natural'
+  },{
+    id: 6,
+    tipo: 'Casa Museo'
+  }];
+
+  // Museos
+  var museos = [{
+    id: 0,
+    nombre: 'Museo Nacional de Arqueología y Etnología',
+    tipoMuseo: 0,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/arqueologia_y_etnologia/0.png'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+    nombre: 'Museo Miraflores',
+    tipoMuseo: 0,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/miraflores/0.jpg'
   }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+    nombre: 'Museo PopolVuh',
+    tipoMuseo: 0,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/popolvuh/0.jpg'
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
+    nombre: 'Museo del Ferrocarril',
+    tipoMuseo: 1,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/ferrocarril/0.jpeg'
   }, {
     id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
+    nombre: 'Musac',
+    tipoMuseo: 2,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/musac/0.jpg'
+  }, {
+    id: 5,
+    nombre: 'Museo Numismático',
+    tipoMuseo: 2,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/numismatico/0.jpg'
+  }, {
+    id: 6,
+    nombre: 'Museo de los Niños',
+    tipoMuseo: 3,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/de_los_niños/0.jpg'
+  }, {
+    id: 7,
+    nombre: 'Museo Arquidiocesano de Santiago de Guatemala',
+    tipoMuseo: 4,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/arquidiocesano/0.jpg'
+  }, {
+    id: 8,
+    nombre: 'Museo Jardín Botánico del Centro de Estudios Conservacionistas USAC',
+    tipoMuseo: 5,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/jardin_botanico/0.JPG'
+  }, {
+    id: 5,
+    nombre: 'Museo Casa MIMA',
+    tipoMuseo: 6,
+    descripcion: 'descripcion',
+    imagen: 'img/museos/mima/0.JPG'
   }];
 
   return {
     all: function() {
-      return chats;
+      return museos;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    remove: function(museo) {
+      museos.splice(museos.indexOf(museo), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(museoId) {
+      for (var i = 0; i < museos.length; i++) {
+        if (museos[i].id === parseInt(museoId)) {
+          return museos[i];
+        }
+      }
+      return null;
+    },
+    getTipo: function(tipoId) {
+      for (var i = 0; i < tipoMuseos.length; i++) {
+        if (tipoMuseos[i].id === parseInt(tipoId)) {
+          return tipoMuseos[i];
         }
       }
       return null;

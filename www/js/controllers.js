@@ -1,36 +1,44 @@
-angular.module('MusaGT.controllers', [])
+angular.module('MusaGT.controllers', [
+  'MusaGT.services'
+])
 
-.controller('MapaCtrl', function($scope) {})
+.controller('MapaCtrl', function($scope) {
 
-.controller('MuseosCtrl', function($scope, $ionicPopover) {
-  $scope.showSearchBar = false;
-  $scope.vm = this;
+  }) //MapaCtrl
 
-  $scope.$on('$ionicView.enter', function(e) {});
+.controller('MuseosCtrl', function($scope, Museos) {
+    $scope.showSearchBar = false;
+    $scope.museos = Museos.all();
 
-  //**Inicializa el dropDown Menu
-  $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
-    scope: $scope
-  }).then(function(popover) {
-    $scope.vm.popover = popover;
-  });
+    $scope.$on('$ionicView.enter', function(e) {
+      $scope.museos = Museos.all();
+    });
 
+    /**
+      Metodo que muestra/oculta la barra de búsqueda
+    */
+    $scope.searchBar = function() {
+      if ($scope.showSearchBar) {
+        $scope.showSearchBar = false;
+      } else {
+        $scope.showSearchBar = true;
+      }
+    };
+  }) //MuseosCtrl
 
-  /**
-    Metodo que muestra/oculta la barra de búsqueda
-  */
-  $scope.searchBar = function() {
-    if ($scope.showSearchBar) {
-      $scope.showSearchBar = false;
-    } else {
-      $scope.showSearchBar = true;
-    }
-  };
-})
+.controller('MuseoCtrl', function($scope, $stateParams, $ionicPopover, Museos) {
+    $scope.museo = Museos.get($stateParams.museoId);
+    $scope.tipoMuseo = Museos.getTipo($scope.museo.tipoMuseo);
+    $scope.vm = this;
 
-.controller('MuseoCtrl', function($scope, $stateParams) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+    //**Inicializa el dropDown Menu
+    $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
+      scope: $scope
+    }).then(function(popover) {
+      $scope.vm.popover = popover;
+    });
+
+  }) //MuseoCtrl
 
 .controller('EventosCtrl', function($scope) {
   $scope.showSearchBar = false;
@@ -46,4 +54,4 @@ angular.module('MusaGT.controllers', [])
     }
   };
 
-});
+}); //EventosCtrl
