@@ -80,7 +80,7 @@ angular.module('MusaGT.services', [])
     descripcion: 'descripcion',
     imagen: 'img/museos/jardin_botanico/0.JPG'
   }, {
-    id: 5,
+    id: 9,
     nombre: 'Museo Casa MIMA',
     tipoMuseo: 6,
     descripcion: 'descripcion',
