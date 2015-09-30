@@ -44,9 +44,7 @@ angular.module('MusaGT.controllers', [
   }) //MuseosCtrl
 
 .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, Museos) {
-    console.log("param: " + $stateParams.museoId);
     $scope.museo = Museos.get($stateParams.museoId);
-    $scope.tipoMuseo = Museos.getTipo($scope.museo.tipoMuseo);
     $scope.vm = this;
 
     //**Inicializa el dropDown Menu
@@ -55,6 +53,56 @@ angular.module('MusaGT.controllers', [
     }).then(function(popover) {
       $scope.vm.popover = popover;
     });
+
+    /**
+      Ir a historia
+    */
+    $scope.irHistoria = function(idMuseo) {
+      $scope.vm.popover.hide();
+      $state.go("tab.museos-detail", {
+        museoId: idMuseo
+      });
+    }; //Historia
+
+    /**
+      Ir a Informacion
+    */
+    $scope.irInformacion = function(idMuseo) {
+      $scope.vm.popover.hide();
+      $state.go("tab.museos-informacion", {
+        museoId: idMuseo
+      });
+    }; //Informacion
+
+    /**
+      Ir a Galeria
+    */
+    $scope.irGaleria = function(idMuseo) {
+      $scope.vm.popover.hide();
+      $state.go("tab.museos-galeria", {
+        museoId: idMuseo
+      });
+    }; //Galeria
+
+    /**
+      Ir a Comentarios
+    */
+    $scope.irComentarios = function(idMuseo) {
+      $scope.vm.popover.hide();
+      $state.go("tab.museos-comentarios", {
+        museoId: idMuseo
+      });
+    }; //Comentarios
+
+    /**
+      Ir a Eventos
+    */
+    $scope.irEventos = function(idMuseo) {
+      $scope.vm.popover.hide();
+      $state.go("tab.museos-eventos", {
+        museoId: idMuseo
+      });
+    }; //Eventos
 
   }) //MuseoCtrl
 

@@ -64,6 +64,46 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
     }
   })
 
+  .state('tab.museos-informacion', {
+    url: '/museos-informacion/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-informacion.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-galeria', {
+    url: '/museos-galeria/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-galeria.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-comentarios', {
+    url: '/museos-comentarios/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-comentarios.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-eventos', {
+    url: '/museos-eventos/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-eventos.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
   .state('tab.mapa', {
     url: '/mapa',
     views: {
