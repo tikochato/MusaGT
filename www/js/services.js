@@ -75,7 +75,7 @@ angular.module('MusaGT.services', [])
     imagen: 'img/museos/arquidiocesano/0.jpg'
   }, {
     id: 8,
-    nombre: 'Museo Jardín Botánico del Centro de Estudios Conservacionistas USAC',
+    nombre: 'Museo Jardín Botánico USAC',
     tipoMuseo: 5,
     descripcion: 'descripcion',
     imagen: 'img/museos/jardin_botanico/0.JPG'
