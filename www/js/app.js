@@ -94,16 +94,6 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
     }
   })
 
-  .state('tab.museos-eventos', {
-    url: '/museos-eventos/:museoId',
-    views: {
-      'tab-museos': {
-        templateUrl: 'templates/museos/museo-eventos.html',
-        controller: 'MuseoCtrl'
-      }
-    }
-  })
-
   .state('tab.mapa', {
     url: '/mapa',
     views: {
@@ -122,7 +112,28 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
         controller: 'EventosCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.museos-eventos', {
+    url: '/museos-eventos/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-eventos.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-evento', {
+    url: '/museos-evento/:eventoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/evento.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/museos');
