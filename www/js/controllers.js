@@ -1,8 +1,70 @@
 angular.module('MusaGT.controllers', [
-  'MusaGT.services', 'ionic.contrib.ui.hscrollcards'
+  'MusaGT.services',
+  'ionic.contrib.ui.hscrollcards',
+  'leaflet-directive', 'ngCordova', 'igTruncate',
 ])
 
-.controller('MapaCtrl', function($scope) {
+.controller('MapaCtrl', function(
+        $scope,
+        $cordovaGeolocation    ) {
+
+
+     $scope.map = {
+       defaults: {
+         tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+         maxZoom: 18,
+         zoomControlPosition: 'bottomleft'
+       },
+       markers : {
+       },
+       events: {
+         map: {
+           enable: ['context'],
+           logic: 'emit'
+         }
+       },
+       center:{
+          lat : 51.500152,
+          lng : -0.126236,
+          zoom : 12
+        }
+     };
+
+          var Location = function() {
+            if ( !(this instanceof Location) ) return new Location();
+            this.lat  = "";
+            this.lng  = "";
+            this.name = "";
+          };
+
+          $scope.locate = function(){
+
+                  $cordovaGeolocation
+                    .getCurrentPosition()
+                    .then(function (position) {
+                      $scope.map.center.lat  = position.coords.latitude;
+                      $scope.map.center.lng = position.coords.longitude;
+                      $scope.map.center.zoom = 15;
+
+                      $scope.map.markers.now = {
+                        lat:position.coords.latitude,
+                        lng:position.coords.longitude,
+                        message: "You Are Here",
+                        focus: true,
+                        draggable: false
+                      };
+                        console.log($scope.map);
+
+
+                    }, function(err) {
+                      // error
+                      console.log("Location error!");
+                      console.log(err);
+                    });
+
+                };
+
+
 
   }) //MapaCtrl
 
