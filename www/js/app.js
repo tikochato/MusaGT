@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'MusaGT.services' is found in services.js
 // 'MusaGT.controllers' is found in controllers.js
-angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
+angular.module('MusaGT', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate','MusaGT.controllers', 'MusaGT.services'])
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');
