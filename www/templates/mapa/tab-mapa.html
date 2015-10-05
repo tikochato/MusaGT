@@ -1,15 +1,12 @@
 <ion-view view-title="Mapa">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
-    <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
+    <button class="button button-icon icon ion-pinpoint" ng-click="locate();"></button>
   </ion-nav-buttons>
 
   <ion-content data-tap-disabled="true">
 
-    <leaflet defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map" width="100%" height="100%" ng-if="map"></leaflet>
+    <leaflet center="map.center" defaults="map.defaults" height="100%" markers="map.markers" ng-if="map" ng-if="map" width="100%"></leaflet>
 
   </ion-content>
 </ion-view>
