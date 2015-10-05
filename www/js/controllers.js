@@ -83,6 +83,10 @@ angular.module('MusaGT.controllers', [
     }, []);
   };
 
+ $scope.cerrarModal = function(){
+    $scope.fullViewModal.hide();
+ }
+
   $scope.openFullImg = function (groupKey, imgKey) {
     $scope.currentImgId = $scope.getImageKey(groupKey, imgKey);
     $scope.fullViewModal.show();
