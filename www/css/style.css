@@ -2,3 +2,18 @@
 .body-tumblr .gray{
   color: #bdbdbd;
 }
+
+.imagen-col {
+  max-width: 200px;
+  max-height: 300px;
+  margin: 20px auto;
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.col-33 {
+  -moz-box-flex: 0;
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%;
+}

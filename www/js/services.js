@@ -1,6 +1,9 @@
 angular.module('MusaGT.services', [])
 
 .factory('Museos', function() {
+  pathArqueologia = 'img/museos/arqueologia_y_etnologia';
+  pathMira = 'img/museos/miraflores';
+
   var tipoMuseos = [{
     id: 0,
     tipo: 'Museo Arqueológico'
@@ -30,7 +33,8 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo Nacional de Arqueología y Etnología',
     tipoMuseo: 0,
     descripcion: 'descripcion',
-    imagen: 'img/museos/arqueologia_y_etnologia/0.png',
+    imagen: pathArqueologia+'/0.png',
+    imagenes: [pathArqueologia+'/0.png', pathArqueologia+'/1.jpg', pathArqueologia+'/2.jpg', pathArqueologia+'/3.jpg', pathArqueologia+'/4.jpg'],
     historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
     + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
     + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
@@ -43,8 +47,9 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo Miraflores',
     tipoMuseo: 0,
     descripcion: 'descripcion',
-    imagen: 'img/museos/miraflores/0.jpg',
-    historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
+    imagen: pathMira+'/0.jpg',
+    imagenes: [pathMira+'/0.jpg', pathMira+'/1.jpg', pathMira+'/2.jpg', pathMira+'/3.jpg', pathMira+'/4.jpg', pathMira+'/5.jpg', pathMira+'/6.jpg', pathMira+'/7.jpg', pathMira+'/8.jpg', pathMira+'/9.jpg', pathMira+'/10.jpg', pathMira+'/11.jpg'],
+    historia: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non posuere purus, ac vehicula est. Nam non eleifend ligula. Quisque dapibus vitae nunc sed dictum. Vivamus congue imperdiet dolor, vel tempor nisi imperdiet id. Sed elit erat, volutpat nec dui et, facilisis dapibus metus. Proin id felis et quam hendrerit vestibulum. Phasellus vehicula, mauris condimentum sodales tristique, erat ligula auctor turpis, vitae viverra ex orci non orci. Mauris felis justo, venenatis vitae erat nec, iaculis suscipit libero. Etiam dui mi, feugiat in dapibus at, ultrices et lorem. Nam vel tortor ipsum. Sed finibus eros id nunc faucibus tristique. Vestibulum ornare at enim eget sollicitudin. Nulla ultrices lacinia ex in dictum. Curabitur vitae sapien vehicula, condimentum ligula sed, aliquam sem. Mauris justo turpis, imperdiet vel felis ut, rhoncus suscipit lorem.</p>'
     + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
     + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
     + '<p><strong>El edificio</strong></p>'
@@ -69,7 +74,7 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo del Ferrocarril',
     tipoMuseo: 1,
     descripcion: 'descripcion',
-    imagen: 'img/museos/ferrocarril/0.jpeg',
+    imagen: 'img/museos/ferrocarril/0.jpg',
     historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
     + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
     + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
@@ -134,7 +139,7 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo Jardín Botánico USAC',
     tipoMuseo: 5,
     descripcion: 'descripcion',
-    imagen: 'img/museos/jardin_botanico/0.JPG',
+    imagen: 'img/museos/jardin_botanico/0.jpg',
     historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
     + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
     + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
@@ -147,7 +152,7 @@ angular.module('MusaGT.services', [])
     nombre: 'Museo Casa MIMA',
     tipoMuseo: 6,
     descripcion: 'descripcion',
-    imagen: 'img/museos/mima/0.JPG',
+    imagen: 'img/museos/mima/0.jpg',
     historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
     + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
     + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'

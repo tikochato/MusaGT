@@ -128,7 +128,7 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
     url: '/museos-evento/:eventoId',
     views: {
       'tab-museos': {
-        templateUrl: 'templates/museos/evento.html',
+        templateUrl: 'templates/museos/museo-evento.html',
         controller: 'MuseoCtrl'
       }
     }

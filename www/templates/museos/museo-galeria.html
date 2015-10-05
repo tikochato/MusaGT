@@ -3,18 +3,11 @@
     <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
   </ion-nav-buttons>
   <ion-content>
-    <div class="list card">
-    <div class="item item-divider">
-      <h2>{{museo.nombre}}</h2>
-      <p>{{tipoMuseo.tipo}}</p>
-    </div>
-      <div class="item item-image">
-        <img class="full-image" ng-src="{{museo.imagen}}" >
-      </div>
-      <div class="item item-divider">
-        <p>
-          {{museo.descripcion}}
-        </p>
+    <div class="img-list">
+      <div class="row" ng-repeat="(groupKey, imgGroup) in imgGroups">
+        <div class="col-33" ng-repeat="(imgKey, img) in imgGroup">
+          <img class="imagen-col" src="" ng-src="{{ img }}" class="img" ng-click="openFullImg(groupKey, imgKey)">
+        </div>
       </div>
     </div>
   </ion-content>
