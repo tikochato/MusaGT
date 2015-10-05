@@ -8,13 +8,11 @@
       <h2>{{museo.nombre}}</h2>
       <p >{{museo.tipoMuseo}}</p>
     </div>
-      <div class="item item-image">
-        <img class="full-image" ng-src="{{museo.imagen}}" >
-      </div>
-      <div class="item item-divider">
-        <p class="gray">
-          {{museo.descripcion}}
-        </p>
+    <div class="item item-image">
+      <img class="full-image" ng-src="{{museo.imagen}}" >
+    </div>
+      <div class="body-tumblr history" ng-bind-html="historia">
+
       </div>
     </div>
   </ion-content>

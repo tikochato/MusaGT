@@ -1,4 +1,4 @@
-<ion-view view-title="{{museo.nombre}}">
+<ion-view view-title="Museo">
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
   </ion-nav-buttons>
@@ -8,6 +8,9 @@
       <h2>{{museo.nombre}}</h2>
       <p>{{tipoMuseo.tipo}}</p>
     </div>
+      <div class="item item-image">
+        <img class="full-image" ng-src="{{museo.imagen}}" >
+      </div>
       <div class="item item-divider">
         <p>
           {{museo.descripcion}}
