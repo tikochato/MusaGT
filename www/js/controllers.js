@@ -43,9 +43,10 @@ angular.module('MusaGT.controllers', [
 
   }) //MuseosCtrl
 
-.controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, Museos) {
+.controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $sce, Museos) {
     $scope.museo = Museos.get($stateParams.museoId);
     $scope.vm = this;
+    $scope.historia = $sce.trustAsHtml($scope.museo.historia);
 
     //**Inicializa el dropDown Menu
     $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
@@ -59,7 +60,7 @@ angular.module('MusaGT.controllers', [
     */
     $scope.irHistoria = function(idMuseo) {
       $scope.vm.popover.hide();
-      $state.go("tab.museos-detail", {
+      $state.go("tab.museos-historia", {
         museoId: idMuseo
       });
     }; //Historia
@@ -69,7 +70,7 @@ angular.module('MusaGT.controllers', [
     */
     $scope.irInformacion = function(idMuseo) {
       $scope.vm.popover.hide();
-      $state.go("tab.museos-informacion", {
+      $state.go("tab.museos-detail", {
         museoId: idMuseo
       });
     }; //Informacion

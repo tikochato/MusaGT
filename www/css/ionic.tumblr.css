@@ -169,3 +169,11 @@
 .body-tumblr.platform-android .toggle input:checked + .track .handle {
   background-color: #36465d;
 }
+
+.body-tumblr .history{
+  background: #36465d;
+  color: #ffffff;
+  text-align: justify;
+  border-color: #445569;
+  padding: 15px;
+}

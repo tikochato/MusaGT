@@ -64,11 +64,11 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
     }
   })
 
-  .state('tab.museos-informacion', {
-    url: '/museos-informacion/:museoId',
+  .state('tab.museos-historia', {
+    url: '/museos-historia/:museoId',
     views: {
       'tab-museos': {
-        templateUrl: 'templates/museos/museo-informacion.html',
+        templateUrl: 'templates/museos/museo-historia.html',
         controller: 'MuseoCtrl'
       }
     }
