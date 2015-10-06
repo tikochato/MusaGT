@@ -1,0 +1,14 @@
+<ion-view view-title="Museo">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="img-list">
+      <div class="row" ng-repeat="(groupKey, imgGroup) in imgGroups">
+        <div class="col-33" ng-repeat="(imgKey, img) in imgGroup">
+          <img class="imagen-col" src="" ng-src="{{ img }}" class="img" ng-click="openFullImg(groupKey, imgKey)">
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

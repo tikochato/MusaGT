@@ -1,14 +1,21 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-<ion-view view-title="{{chat.name}}">
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
+<ion-view view-title="Museo">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="list card">
+    <div class="item item-divider">
+      <h2>{{museo.nombre}}</h2>
+      <p >{{museo.tipoMuseo}}</p>
+    </div>
+      <div class="item item-image">
+        <img class="full-image" ng-src="{{museo.imagen}}" >
+      </div>
+      <div class="item item-divider">
+        <p class="gray">
+          {{museo.descripcion}}
+        </p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

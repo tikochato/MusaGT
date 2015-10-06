@@ -1,0 +1,37 @@
+<ion-view view-title="Museo">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="bar bar-header item-input-inset" ng-show="showSearchBar">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input ng-model="searchBar.searchText" placeholder="{{LABEL_SEARCH}}" type="search">
+      </label>
+      <i class="icon placeholder-icon ion-ios-close-outline" on-touch="searchBar.searchText = ''"></i>
+    </div>
+
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/museos/miraflores/2.jpg">
+        <h2>Evento 1</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut metus tristique, finibus nibh eget</p>
+      </div>
+      <div class="item item-divider item-avatar">
+        <img src="img/museos/miraflores/3.jpg">
+        <h2>Evento 2</h2>
+          <p>Integer tellus arcu, posuere sed dui vitae, mollis molestie metus</p>
+      </div>
+      <div class="item item-avatar">
+        <img src="img/museos/miraflores/0.jpg">
+        <h2>Evento 3</h2>
+          <p>Donec laoreet sit amet augue eu ornare. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egesta</p>
+      </div>
+      <div class="item item-avatar">
+        <img src="img/museos/miraflores/1.jpg">
+        <h2>Evento 4</h2>
+          <p>Curabitur viverra hendrerit ante, nec condimentum risus suscipit ac. Maecenas nec velit sed orci varius gravida</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

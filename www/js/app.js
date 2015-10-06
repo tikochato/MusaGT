@@ -5,7 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'MusaGT.services' is found in services.js
 // 'MusaGT.controllers' is found in controllers.js
-angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
+angular.module('MusaGT', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate','MusaGT.controllers', 'MusaGT.services'])
+
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom');
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -51,7 +55,7 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
   })
 
   .state('tab.museos-detail', {
-    url: '/museos/:museoId',
+    url: '/museos-detail/:museoId',
     views: {
       'tab-museos': {
         templateUrl: 'templates/museos/museo-detail.html',
@@ -60,15 +64,45 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
     }
   })
 
-  .state('tab.mapa', {
-      url: '/mapa',
-      views: {
-        'tab-mapa': {
-          templateUrl: 'templates/mapa/tab-mapa.html',
-          controller: 'MapaCtrl'
-        }
+  .state('tab.museos-historia', {
+    url: '/museos-historia/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-historia.html',
+        controller: 'MuseoCtrl'
       }
-    })
+    }
+  })
+
+  .state('tab.museos-galeria', {
+    url: '/museos-galeria/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-galeria.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-comentarios', {
+    url: '/museos-comentarios/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-comentarios.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.mapa', {
+    url: '/mapa',
+    views: {
+      'tab-mapa': {
+        templateUrl: 'templates/mapa/tab-mapa.html',
+        controller: 'MapaCtrl'
+      }
+    }
+  })
 
   .state('tab.eventos', {
     url: '/eventos',
@@ -78,7 +112,28 @@ angular.module('MusaGT', ['ionic', 'MusaGT.controllers', 'MusaGT.services'])
         controller: 'EventosCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.museos-eventos', {
+    url: '/museos-eventos/:museoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-eventos.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+
+  .state('tab.museos-evento', {
+    url: '/museos-evento/:eventoId',
+    views: {
+      'tab-museos': {
+        templateUrl: 'templates/museos/museo-evento.html',
+        controller: 'MuseoCtrl'
+      }
+    }
+  })
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/museos');
