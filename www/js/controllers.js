@@ -2,7 +2,7 @@ angular.module('MusaGT.controllers', [
   'MusaGT.services'
   , 'ionic.contrib.ui.hscrollcards'
   , 'ngImageViewer'
-  , 'leaflet-directive', 
+  , 'leaflet-directive',
   , 'ngCordova'
   , 'igTruncate'
 ])
