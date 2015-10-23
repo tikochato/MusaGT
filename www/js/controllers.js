@@ -8,70 +8,70 @@ angular.module('MusaGT.controllers', [
 ])
 
 .controller('MapaCtrl', function(
-        $scope,
-        $cordovaGeolocation    ) {
+  $scope,
+  $cordovaGeolocation    ) {
 
 
-     $scope.map = {
-       defaults: {
-         tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-         maxZoom: 18,
-         zoomControlPosition: 'bottomleft'
-       },
-       markers : {
-       },
-       events: {
-         map: {
-           enable: ['context'],
-           logic: 'emit'
-         }
-       },
-       center:{
-          lat : 51.500152,
-          lng : -0.126236,
-          zoom : 12
+    $scope.map = {
+      defaults: {
+        tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        maxZoom: 18,
+        zoomControlPosition: 'bottomleft'
+      },
+      markers : {
+      },
+      events: {
+        map: {
+          enable: ['context'],
+          logic: 'emit'
         }
-     };
+      },
+      center:{
+        lat : 51.500152,
+        lng : -0.126236,
+        zoom : 12
+      }
+    };
 
-          var Location = function() {
-            if ( !(this instanceof Location) ) return new Location();
-            this.lat  = "";
-            this.lng  = "";
-            this.name = "";
-          };
+    var Location = function() {
+      if ( !(this instanceof Location) ) return new Location();
+      this.lat  = "";
+      this.lng  = "";
+      this.name = "";
+    };
 
-          $scope.locate = function(){
+    $scope.locate = function(){
+        console.log("locate");
+      $cordovaGeolocation
+      .getCurrentPosition()
+      .then(function (position) {
+        $scope.map.center.lat  = position.coords.latitude;
+        $scope.map.center.lng = position.coords.longitude;
+        $scope.map.center.zoom = 15;
 
-                  $cordovaGeolocation
-                    .getCurrentPosition()
-                    .then(function (position) {
-                      $scope.map.center.lat  = position.coords.latitude;
-                      $scope.map.center.lng = position.coords.longitude;
-                      $scope.map.center.zoom = 15;
-
-                      $scope.map.markers.now = {
-                        lat:position.coords.latitude,
-                        lng:position.coords.longitude,
-                        message: "You Are Here",
-                        focus: true,
-                        draggable: false
-                      };
-                        console.log($scope.map);
+        $scope.map.markers.now = {
+          lat:position.coords.latitude,
+          lng:position.coords.longitude,
+          message: "Te encuentras aqui",
+          focus: true,
+          draggable: false
+        };
+        console.log($scope.map);
 
 
-                    }, function(err) {
-                      // error
-                      console.log("Location error!");
-                      console.log(err);
-                    });
+      }, function(err) {
+        // error
+        console.log("Location error!");
+        console.log(err);
+      });
 
-                };
+    };
 
 
 
   }) //MapaCtrl
 
-.controller('MuseosCtrl', function($scope, $state, Museos) {
+  .controller('MuseosCtrl', function($scope, $state, Museos) {
     $scope.showSearchBar = false;
     var museos = Museos.all();
     for (i = 0; i < museos.length; i++) {
@@ -86,7 +86,7 @@ angular.module('MusaGT.controllers', [
     });
 
     /**
-      Ir a museo individual
+    Ir a museo individual
     */
     $scope.irMuseo = function(idMuseo) {
       $state.go("tab.museos-detail", {
@@ -95,7 +95,7 @@ angular.module('MusaGT.controllers', [
     }
 
     /**
-      Metodo que muestra/oculta la barra de búsqueda
+    Metodo que muestra/oculta la barra de búsqueda
     */
     $scope.searchBar = function() {
       if ($scope.showSearchBar) {
@@ -108,12 +108,13 @@ angular.module('MusaGT.controllers', [
 
   }) //MuseosCtrl
 
-.controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, Museos) {
+  .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, Museos) {
     $scope.museo = Museos.get($stateParams.museoId);
     $scope.vm = this;
-  $scope.historia = $sce.trustAsHtml($scope.museo.historia);
-  //Variables para galeria de imagenes
-  $scope.imgs = $scope.museo.imagenes;
+    $scope.historia = $sce.trustAsHtml($scope.museo.historia);
+    $scope.informacion = $sce.trustAsHtml($scope.museo.informacion);
+    //Variables para galeria de imagenes
+    $scope.imgs = $scope.museo.imagenes;
 
     //**Inicializa el dropDown Menu
     $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
@@ -122,113 +123,113 @@ angular.module('MusaGT.controllers', [
       $scope.vm.popover = popover;
     });
 
-  //*** Galeria
-  $scope.imgGroups = undefined;
-  $scope.currentImgId = undefined;
-  $scope.fullViewModal = undefined;
+    //*** Galeria
+    $scope.imgGroups = undefined;
+    $scope.currentImgId = undefined;
+    $scope.fullViewModal = undefined;
 
-  $scope.getImageKey = function (groupKey, photoKey) {
-    return groupKey * 3 + photoKey;
-  };
+    $scope.getImageKey = function (groupKey, photoKey) {
+      return groupKey * 3 + photoKey;
+    };
 
-  $scope.separateByGroups = function (imgs) {
-    return imgs.reduce(function (result, item) {
-      var lastItemKey, nextItemKey, key;
-      lastItemKey = result.length - 1;
-      nextItemKey = result.length;
-      key = lastItemKey;
-      if (nextItemKey == 0 || result[lastItemKey].length == 3) {
-        result[nextItemKey] = [];
-        key = nextItemKey;
+    $scope.separateByGroups = function (imgs) {
+      return imgs.reduce(function (result, item) {
+        var lastItemKey, nextItemKey, key;
+        lastItemKey = result.length - 1;
+        nextItemKey = result.length;
+        key = lastItemKey;
+        if (nextItemKey == 0 || result[lastItemKey].length == 3) {
+          result[nextItemKey] = [];
+          key = nextItemKey;
+        }
+        result[key].push(item);
+        return result;
+      }, []);
+    };
+
+    $scope.cerrarModal = function(){
+      $scope.fullViewModal.hide();
+    }
+
+    $scope.openFullImg = function (groupKey, imgKey) {
+      $scope.currentImgId = $scope.getImageKey(groupKey, imgKey);
+      $scope.fullViewModal.show();
+    };
+
+    $scope.closeFullImg = function (evt) {
+      if (!angular.element(evt.target).hasClass('full-image-view')) {
+        return false;
       }
-      result[key].push(item);
-      return result;
-    }, []);
-  };
+      $scope.fullViewVisible = false;
+    };
 
- $scope.cerrarModal = function(){
-    $scope.fullViewModal.hide();
- }
-
-  $scope.openFullImg = function (groupKey, imgKey) {
-    $scope.currentImgId = $scope.getImageKey(groupKey, imgKey);
-    $scope.fullViewModal.show();
-  };
-
-  $scope.closeFullImg = function (evt) {
-    if (!angular.element(evt.target).hasClass('full-image-view')) {
-      return false;
-    }
-    $scope.fullViewVisible = false;
-  };
-
-  $scope.imgGroups = $scope.separateByGroups($scope.imgs);
-  $ionicModal
-  .fromTemplateUrl('lib/ionic-gallery/image-viewer-modal.html', { scope: $scope })
-  .then(function (modal) {
-    if (!modal) {
-      return false;
-    }
-    $scope.fullViewModal = modal;
-    /*
-    $timeout(function () {
+    $scope.imgGroups = $scope.separateByGroups($scope.imgs);
+    $ionicModal
+    .fromTemplateUrl('lib/ionic-gallery/image-viewer-modal.html', { scope: $scope })
+    .then(function (modal) {
+      if (!modal) {
+        return false;
+      }
+      $scope.fullViewModal = modal;
+      /*
+      $timeout(function () {
       $scope.openFullImg(0, 0);
     }, 300);
     */
   } );
   //***galeria
 
-    /**
-      Ir a historia
-    */
-    $scope.irHistoria = function(idMuseo) {
-      $scope.vm.popover.hide();
+  /**
+  Ir a historia
+  */
+  $scope.irHistoria = function(idMuseo) {
+    $scope.vm.popover.hide();
     $state.go("tab.museos-historia", {
-        museoId: idMuseo
-      });
-    }; //Historia
+      museoId: idMuseo
+    });
+  }; //Historia
 
-    /**
-      Ir a Informacion
-    */
-    $scope.irInformacion = function(idMuseo) {
-      $scope.vm.popover.hide();
+  /**
+  Ir a Informacion
+  */
+  $scope.irInformacion = function(idMuseo) {
+    $scope.vm.popover.hide();
     $state.go("tab.museos-detail", {
-        museoId: idMuseo
-      });
-    }; //Informacion
+      museoId: idMuseo
+    });
+  }; //Informacion
 
-    /**
-      Ir a Galeria
-    */
-    $scope.irGaleria = function(idMuseo) {
-      $scope.vm.popover.hide();
-      $state.go("tab.museos-galeria", {
-        museoId: idMuseo
-      });
-    }; //Galeria
+  /**
+  Ir a Galeria
+  */
+  $scope.irGaleria = function(idMuseo) {
+    $scope.vm.popover.hide();
+    $state.go("tab.museos-galeria", {
+      museoId: idMuseo
+    });
+  }; //Galeria
 
-    /**
-      Ir a Comentarios
-    */
-    $scope.irComentarios = function(idMuseo) {
-      $scope.vm.popover.hide();
-      $state.go("tab.museos-comentarios", {
-        museoId: idMuseo
-      });
-    }; //Comentarios
+  /**
+  Ir a Comentarios
+  */
+  $scope.irComentarios = function(idMuseo) {
+    $scope.vm.popover.hide();
+    $state.go("tab.museos-comentarios", {
+      museoId: idMuseo
+    });
+  }; //Comentarios
 
-    /**
-      Ir a Eventos
-    */
-    $scope.irEventos = function(idMuseo) {
-      $scope.vm.popover.hide();
-      $state.go("tab.museos-eventos", {
-        museoId: idMuseo
-      });
-    }; //Eventos
+  /**
+  Ir a Eventos
+  */
+  $scope.irEventos = function(idMuseo) {
+    $scope.vm.popover.hide();
+    $state.go("tab.museos-eventos", {
+      museoId: idMuseo
+    });
+  }; //Eventos
 
-  }) //MuseoCtrl
+}) //MuseoCtrl
 
 .controller('EventosCtrl', function($scope) {
   $scope.showSearchBar = false;
@@ -238,7 +239,7 @@ angular.module('MusaGT.controllers', [
   });
 
   /**
-    Metodo que muestra/oculta la barra de búsqueda
+  Metodo que muestra/oculta la barra de búsqueda
   */
   $scope.searchBar = function() {
     if ($scope.showSearchBar) {
