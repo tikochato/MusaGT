@@ -9,10 +9,8 @@ angular.module('MusaGT.services', [])
   pathNumismatico = 'img/museos/numismatico';
   pathNinos = 'img/museos/de_los_ninos';
   pathArqui = 'img/museos/arquidiocesano';
-  pathMusac = 'img/museos/musac';
-  pathMusac = 'img/museos/musac';
-  pathMusac = 'img/museos/musac';
-
+  pathJardin = 'img/museos/jardin_botanico';
+  pathMima = 'img/museos/mima';
 
   var tipoMuseos = [{
     id: 0,
@@ -205,7 +203,7 @@ angular.module('MusaGT.services', [])
       +'<div class="item item-divider"><strong>Tarifas</strong></div>'
       +'<div class="item item-body body-tumblr gray"><p>Tarifa Regular: Q40.00 (tarifa única a partir de 2 años)</p></div>'
       +'<div class="item item-divider"><strong>Tarifas Familiares</strong></div>'
-      +'<div class="item item-body body-tumblr gray"><p>De Martes a Viernes por la TARDE, fines de semana y días festivos Pasaportes Familiares:<br/>1 boleto X Q 40.00<br/>2 boletos X Q 65.00<br/>3 boletos X Q 90.00<br/>4 boletos X Q 110.00<br/>5 boletos X Q 130.00, boleto adicional a los 5 Q 30.00</p></div>'
+      +'<div class="item item-body body-tumblr gray"><p>De Martes a Viernes por la tarde, fines de semana y días festivos Pasaportes Familiares:<br/>1 boleto X Q 40.00<br/>2 boletos X Q 65.00<br/>3 boletos X Q 90.00<br/>4 boletos X Q 110.00<br/>5 boletos X Q 130.00, boleto adicional a los 5 Q 30.00</p></div>'
       +'<div class="item item-divider"><strong>Parqueo</strong></div>'
       +'<div class="item item-body body-tumblr gray"><p>Q10.00 Precio de Parqueo para visitante</p></div>'
       +'</div>',
@@ -232,38 +230,34 @@ angular.module('MusaGT.services', [])
     tipoMuseo: 5,
     informacion: '<div class="list card"><div class="item item-divider"><strong>Información</strong></div>'
       +'<div class="item item-body body-tumblr gray"><p>Museo Jardín Botánico USAC<br />Avenida La Reforma 0-63, zona 10<br/>Ciudad de Guatemala<br/>Telefono: <br/>(502) 2331 0904<br/>jardinbotanico@usac.edu.gt<br/><a href="http://sitios.usac.edu.gt/jardinbotanico/">http://sitios.usac.edu.gt/jardinbotanico/</a></p></div>'
-      +'<div class="item item-divider"><strong>Horario</strong></div>'
-      +'<div class="item item-body body-tumblr gray"><p>Martes a viernes<br/>8:30-12:00<br/>13:00-16:30<br/>Sábados y Domingos<br/>9:30-13:30<br/>14:30-18:00</p></div>'
-      +'<div class="item item-divider"><strong>Tarifas</strong></div>'
-      +'<div class="item item-body body-tumblr gray"><p>Tarifa Regular: Q40.00 (tarifa única a partir de 2 años)</p></div>'
-      +'<div class="item item-divider"><strong>Tarifas Familiares</strong></div>'
-      +'<div class="item item-body body-tumblr gray"><p>De Martes a Viernes por la TARDE, fines de semana y días festivos Pasaportes Familiares:<br/>1 boleto X Q 40.00<br/>2 boletos X Q 65.00<br/>3 boletos X Q 90.00<br/>4 boletos X Q 110.00<br/>5 boletos X Q 130.00, boleto adicional a los 5 Q 30.00</p></div>'
-      +'<div class="item item-divider"><strong>Parqueo</strong></div>'
-      +'<div class="item item-body body-tumblr gray"><p>Q10.00 Precio de Parqueo para visitante</p></div>'
       +'</div>',
     imagen: 'img/museos/jardin_botanico/0.jpg',
-    imagenes: [pathMira+'/0.jpg', pathMira+'/1.jpg', pathMira+'/2.jpg', pathMira+'/3.jpg', pathMira+'/4.jpg', pathMira+'/5.jpg', pathMira+'/6.jpg', pathMira+'/7.jpg', pathMira+'/8.jpg', pathMira+'/9.jpg', pathMira+'/10.jpg', pathMira+'/11.jpg'],
-    historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
-    + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
-    + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
-    + '<p><strong>El edificio</strong></p>'
-    + '<p>El inmueble del Museo se enmarca dentro del complejo de museos de la zona 13 de la ciudad de Guatemala. Este complejo fue construido durante el gobierno del General Jorge Ubico (1930-1944). Se creó como un Complejo Cultural donde se celebró hasta 1944, la Feria Nacional de Noviembre. Fue declarado como patrimonio cultural en agosto de 1998.</p>'
-    + '<p>El Museo Nacional de Arqueología y Etnología posee una valiosa colección de objetos arqueológicos extraídos por excavaciones de arqueólogos en la tierra guatemalteca, coordinadas por el Instituto Nacional de Antropología e Historia. Contiene, además colecciones de  objetos etnológicos e indumentaria de uso ceremonial y cotidiano de la época colonial y contemporánea.</p>'
-    + '<p>Las colecciones distinguidas se integran en cerámica, piedra, concha, hueso y jade, prehispánicos y tela. Además se complementa la colección con objetos artesanales, pictóricos y fotografías.'
+    imagenes: [pathJardin+'/0.jpg', pathJardin+'/1.jpg', pathJardin+'/2.jpg', pathJardin+'/3.jpg', pathJardin+'/4.jpg', pathJardin+'/5.jpg', pathJardin+'/6.jpg', pathJardin+'/7.jpg'],
+    historia: '<p>El <strong>Jardín Botánico</strong> fue fundado oficialmente el 27 de diciembre de 1922 por iniciativa de la entonces <strong>Facultad de Ciencias Naturales y Farmacina</strong> (folio 253 de Junta Directiva, 19 de agosto de 1922), y declarado <strong>Patrimonio Natural y Cultural de la Nación</strong> por decreto legislativo 26-97.</p>'
+    + '<p>Es un orgullo para el pais ya que, aparte de estar al servicio de la educación en beneficio de la Madre Naturaleza, también es el primer Jardín Botánico en Centro América.</p>'
+    + '<p>El Jardín Botánico, unidad del CECON, es identificable por los organismos universitarios, Jardines Botánicos e instituciones afines en el extranjero y otras instituciones nacionales e internacionales que trabajan en la investigación, conservación y educación, porque está inmerso dentro de las grandes líneas mundiales de acción sobre conservación y el manejo adecuado de sus colecciones botánicas.</p>'
   }, {
     id: 9,
     nombre: 'Museo Casa MIMA',
     tipoMuseo: 6,
-    informacion: 'Información',
+    informacion: '<div class="list card"><div class="item item-divider"><strong>Información</strong></div>'
+      +'<div class="item item-body body-tumblr gray"><p>Museo Casa MIMA<br />8a Avenida 14-12  Zona 1 Centro Historico<br/>Ciudad de Guatemala<br/>Telefono: <br/>Museo<br/>(502) 2253-4020<br/>Oficina<br/>2253-6657 y 2232-6902<br/><a href="http://www.casamima.org/">http://www.casamima.org/</a></p></div>'
+      +'<div class="item item-divider"><strong>Horario</strong></div>'
+      +'<div class="item item-body body-tumblr gray"><p>Lunes a Sábado<br/>10:00 a 17:00</p></div>'
+      +'<div class="item item-divider"><strong>Tarifas</strong></div>'
+      +'<div class="item item-body body-tumblr gray"><p>Q.20 General<br/>Q.15 Niños menores de 12 años<br/>Q.15 Estudiantes con carnet<br/>Q.15 Adultos mayores de 65 con DPI</p></div>'
+      +'<div class="item item-body body-tumblr gray"><p>Se atienden grupos escolares de primaria.<br/>Se solicita que los maestros se pongan en contacto con la oficina para obtener información sobre el programa educativo.</p></div>'
+      +'<div class="item item-body body-tumblr gray"><p>También se atiende a grupos de alumnos de secundaria, así como a universitarios.<br/>Se ofrece visitas técnicas a universitarios.</p></div>'
+      +'</div>',
     imagen: 'img/museos/mima/0.jpg',
-    imagenes: [pathMira+'/0.jpg', pathMira+'/1.jpg', pathMira+'/2.jpg', pathMira+'/3.jpg', pathMira+'/4.jpg', pathMira+'/5.jpg', pathMira+'/6.jpg', pathMira+'/7.jpg', pathMira+'/8.jpg', pathMira+'/9.jpg', pathMira+'/10.jpg', pathMira+'/11.jpg'],
-    historia: '<p><strong>El Museo Nacional de Arqueología y Etnología (MUNAE)</strong> es una institución guatemalteca encargada de la conservación y exhibición de vestigios y artefactos arqueológicos y etnológicos, pertenecientes al patrimonio cultural e histórico de Guatemala.</p>'
-    + '<p>Se trata de un Museo Nacional dedicado también a la investigación de la importante herencia cultural de esta nación mesoamericana.</p>'
-    + '<p>Cuenta con aproximadamente 3000 m² de espacio de exhibición y cerca de 1500 m² destinados a la restauración e investigación de las piezas que integran sus varias colecciones. El MUNAE alberga un conjunto de cerca de 20.000 artefactos arqueológicos y a unas 5.000 piezas etnológicas.</p>'
-    + '<p><strong>El edificio</strong></p>'
-    + '<p>El inmueble del Museo se enmarca dentro del complejo de museos de la zona 13 de la ciudad de Guatemala. Este complejo fue construido durante el gobierno del General Jorge Ubico (1930-1944). Se creó como un Complejo Cultural donde se celebró hasta 1944, la Feria Nacional de Noviembre. Fue declarado como patrimonio cultural en agosto de 1998.</p>'
-    + '<p>El Museo Nacional de Arqueología y Etnología posee una valiosa colección de objetos arqueológicos extraídos por excavaciones de arqueólogos en la tierra guatemalteca, coordinadas por el Instituto Nacional de Antropología e Historia. Contiene, además colecciones de  objetos etnológicos e indumentaria de uso ceremonial y cotidiano de la época colonial y contemporánea.</p>'
-    + '<p>Las colecciones distinguidas se integran en cerámica, piedra, concha, hueso y jade, prehispánicos y tela. Además se complementa la colección con objetos artesanales, pictóricos y fotografías.'
+    imagenes: [pathMima+'/0.jpg', pathMima+'/1.jpg', pathMima+'/2.jpg', pathMima+'/3.jpg', pathMima+'/4.jpg', pathMima+'/5.jpg', pathMima+'/6.jpg'],
+    historia: '<p>Casa MIMA es una Casa Museo en el Centro Histórico de la Ciudad de Guatamala.  Alberga una colección doméstica que incluye los muebles de época, las artes decorativas y los utensilios de la vida cotidiana que datan de finales del siglo XIX a mediados del siglo XX.</p>'
+    + '<p>Es una residencia de finales de 1800, donde habitó la familia Escobar Vega. Guarda un magnifico ejemplo de ambientaciones de la época republicana y sus artes decorativas.</p>'
+    + '<p>La combinación de estilos e influencias de distintas nacionalidades reflejan el modo de vida de este período, así como la identidad del capitalino de la Guatemala independiente. </p>'
+    + '<p>El inmueble fue construido en 1870 en la esquina de las antiguas calles del Carmen y las Beatas, en el corazón de lo que hoy es conocido como el Centro Histórico de la Ciudad de Guatemala.</p>'
+    + '<p>En la década de 1920, la casa tuvo ciertas adaptaciones que estuvieron a cargo del Arquitecto Rafael Pérez de Léon. </p>'
+    + '<p>La Fundación Cultural La Luz fue creada para administrar las finanzas del museo.  Recibe donaciones de artículos de época para su conservación, así como donaciones económicas.</p>'
+    + '<p>Casa MIMA también mantiene un programa de exposiciones temporales temáticas. </p>'
   }];
 
   return {
