@@ -14,3 +14,7 @@ bower install
 npm install
 ionic state restore
 ```
+
+#Atribuciones
+Boton Flotante
+https://github.com/hafizbilal112/fab
