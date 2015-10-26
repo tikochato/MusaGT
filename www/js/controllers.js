@@ -3,6 +3,7 @@ angular.module('MusaGT.controllers', [
   , 'ionic.contrib.ui.hscrollcards'
   , 'ngImageViewer'
   , 'leaflet-directive',
+  , 'fab-component'
   , 'ngCordova'
   , 'igTruncate'
 ])
@@ -41,7 +42,7 @@ angular.module('MusaGT.controllers', [
     };
 
     $scope.locate = function(){
-        console.log("locate");
+      console.log("locate");
       $cordovaGeolocation
       .getCurrentPosition()
       .then(function (position) {
@@ -217,7 +218,12 @@ angular.module('MusaGT.controllers', [
     $state.go("tab.museos-comentarios", {
       museoId: idMuseo
     });
-  }; //Comentarios
+  };
+
+  $scope.nuevoComentario = function(){
+    console.log("hola comentario");
+  }
+  //Comentarios
 
   /**
   Ir a Eventos

@@ -2,7 +2,38 @@
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-android-more-vertical" ng-click="vm.popover.show($event)"></button>
   </ion-nav-buttons>
-  <ion-content>
-    
+  <ion-content fab-scroll-container>
+
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="mcfly.jpg">
+        <p>November 05, 1955</p>
+        <p>November 05, 1955</p>
+      </div>
+      <div class="item item-body">
+        <p>
+          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+          the content is from a card-body consisting of an image and paragraph text. The footer
+          consists of tabs, icons aligned left, within the card-footer.
+        </p>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="mcfly.jpg">
+        <p>November 05, 1955</p>
+        <p>November 05, 1955</p>
+      </div>
+      <div class="item item-body">
+        <p>
+          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+          the content is from a card-body consisting of an image and paragraph text. The footer
+          consists of tabs, icons aligned left, within the card-footer.
+        </p>
+      </div>
+    </div>
   </ion-content>
+  <fab  ng-click="nuevoComentario()">
+    <i class="icon ion ion-android-add"></i>
+  </fab>
 </ion-view>

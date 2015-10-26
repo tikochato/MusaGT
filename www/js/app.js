@@ -7,6 +7,7 @@
 // 'MusaGT.controllers' is found in controllers.js
 angular.module('MusaGT', ['ionic'
 , 'leaflet-directive'
+, 'fab-component'
 , 'ngCordova'
 , 'igTruncate'
 ,'MusaGT.controllers'
