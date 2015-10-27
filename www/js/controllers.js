@@ -116,12 +116,33 @@ angular.module('MusaGT.controllers', [
     $scope.informacion = $sce.trustAsHtml($scope.museo.informacion);
     //Variables para galeria de imagenes
     $scope.imgs = $scope.museo.imagenes;
+    //Variables para comentarios
+    $scope.mostrarNuevoComentario = false;
+    $scope.mostrarAgregarComentario = true;
+    $scope.comentarios = [];
+    var options = {
+      weekday: "long", year: "numeric", month: "short",
+      day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
 
     //**Inicializa el dropDown Menu
     $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
       scope: $scope
     }).then(function(popover) {
       $scope.vm.popover = popover;
+    });
+
+    $scope.$on("$ionicView.enter", function(scopes, states) {
+      try{
+        $scope.comentarios = Museos.getComentarios($stateParams.museoId);
+        $scope.comentarios.forEach(function(comentario){
+          comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
+        });
+        $scope.mostrarAgregarComentario = $scope.comentarios.length <= 0;
+        $scope.$apply();
+      }catch(error){
+        console.log(error);
+      }
     });
 
     //*** Galeria
@@ -221,8 +242,56 @@ angular.module('MusaGT.controllers', [
   };
 
   $scope.nuevoComentario = function(){
-    console.log("hola comentario");
+    $scope.mostrarNuevoComentario = !$scope.mostrarNuevoComentario;
   }
+$scope.textoComentario ={
+    texto:""
+};
+
+  $scope.agregarComentario = function(){
+    Museos.addComentario($stateParams.museoId, $scope.rangeMuseo.rating, $scope.textoComentario.texto);
+    var comentario = {
+      id : 6,
+      idMuseo : $stateParams.museoId,
+      fecha : new Date(),
+      calificacion : $scope.rangeMuseo.rating,
+      comentario : $scope.textoComentario.texto
+    }
+    comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
+    $scope.comentarios.unshift(comentario);
+    $scope.textoComentario.texto="";
+    $scope.mostrarNuevoComentario = false;
+  }
+
+  $scope.actualizarComentarios = function(){
+    $scope.$apply(function() {
+      $scope.comentarios = Museos.getComentarios($stateParams.museoId);
+    });
+    $scope.textoComentario.texto="";
+    $scope.mostrarNuevoComentario = false;
+    $scope.$broadcast('scroll.refreshComplete');
+  }
+
+  //Valores iniciales para la directiva de calificacion
+      $scope.rangeMuseo = {
+        iconOn: 'ion-ios-star',    //Optional
+        iconHalf: 'ion-ios-star-half', //Optional
+        iconOff: 'ion-ios-star-outline',   //Optional
+        iconOnColor: 'rgb(255, 153, 20)',  //Optional
+        iconOffColor:  'rgb(255, 193, 7)',    //Optional
+        ratingLabel: "Calificar:", //Optional
+        rating:  0, //Optional
+        minRating: 0,    //Optional
+        readOnly: true, //Optional
+        callback: function(rating) {    //Mandatory
+          this.rating = rating;
+          $scope.ratingsCallback(rating);
+        }
+      };
+
+      $scope.ratingsCallback = function(rating) {
+        console.log('Selected rating is : ' + rating);
+      };
   //Comentarios
 
   /**

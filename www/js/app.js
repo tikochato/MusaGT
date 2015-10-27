@@ -8,6 +8,7 @@
 angular.module('MusaGT', ['ionic'
 , 'leaflet-directive'
 , 'fab-component'
+, 'ionic-ratings'
 , 'ngCordova'
 , 'igTruncate'
 ,'MusaGT.controllers'

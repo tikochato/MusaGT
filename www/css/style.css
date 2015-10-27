@@ -49,3 +49,16 @@ body {
 .tabs.border-top {
   border-top: 1px solid #ddd !important;
 }
+
+.button-center {
+  text-align: center;
+  display: block;
+  margin: 0 auto 0 auto;
+}
+
+/**
+Estilo para estrellas en calificacion
+*/
+.ionic_ratings .icon {
+  font-size: 50px;
+}

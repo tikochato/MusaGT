@@ -1,0 +1,27 @@
+<div class="text-center ionic_ratings" style="display:table;">
+  <span style="display:table-cell; vertical-align:middle; padding-right: 10px;">{{ratingLabel}}</span>
+  <span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(1)"
+  ng-show="rating == 0" ng-class="{'read_only':(readOnly)}"></span>
+  <span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(0)"
+  ng-show="rating > 0.5" ng-class="{'read_only':(readOnly)}"></span>
+
+  <span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(2)"
+  ng-show="rating <= 1" ng-class="{'read_only':(readOnly)}"></span>
+  <span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(1)"
+  ng-show="rating > 1.5" ng-class="{'read_only':(readOnly)}"></span>
+
+  <span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(3)"
+  ng-show="rating <= 2" ng-class="{'read_only':(readOnly)}"></span>
+  <span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(2)"
+  ng-show="rating > 2.5" ng-class="{'read_only':(readOnly)}"></span>
+
+  <span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(4)"
+  ng-show="rating <= 3" ng-class="{'read_only':(readOnly)}"></span>
+  <span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(3)"
+  ng-show="rating > 3.5" ng-class="{'read_only':(readOnly)}"></span>
+
+  <span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(5)"
+  ng-show="rating <= 4" ng-class="{'read_only':(readOnly)}"></span>
+  <span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(4)"
+  ng-show="rating > 4.5" ng-class="{'read_only':(readOnly)}"></span>
+</div>

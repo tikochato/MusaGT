@@ -4,34 +4,52 @@
   </ion-nav-buttons>
   <ion-content fab-scroll-container>
 
-    <div class="list card">
-      <div class="item item-avatar">
-        <img src="img/avatar.png">
-        <p>November 05, 1955</p>
-        <p>November 05, 1955</p>
-      </div>
-      <div class="item item-body">
-        <p>
-          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-          the content is from a card-body consisting of an image and paragraph text. The footer
-          consists of tabs, icons aligned left, within the card-footer.
-        </p>
+    <ion-refresher pulling-text="Desliza para actualizar..." on-refresh="actualizarComentarios()">
+    </ion-refresher>
+
+    <div class="card" ng-show="mostrarAgregarComentario">
+      <div class="item item-text-wrap" style="color: #B2B2B2;">No hay comentarios acerca de este museo, se el primero en agregar uno!</div>
+    </div>
+
+    <div class="card" ng-show="mostrarNuevoComentario">
+      <div class="item item-text-wrap" style="color: #B2B2B2;">
+        <ionic-ratings ratingsobj='rangeMuseo'></ionic-ratings>
+        <label class="item item-input">
+          <textarea placeholder="Agrega tu comentario..." ng-model="textoComentario.texto" rows="5" style="color: #111;"></textarea>
+        </label>
+        <button class="button button-balanced button-center" ng-click="agregarComentario()">
+          Enviar
+        </button>
       </div>
     </div>
-    <div class="list card">
-      <div class="item item-avatar">
-        <img src="img/avatar.png">
-        <p>November 05, 1955</p>
-        <p>November 05, 1955</p>
-      </div>
-      <div class="item item-body">
-        <p>
-          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-          the content is from a card-body consisting of an image and paragraph text. The footer
-          consists of tabs, icons aligned left, within the card-footer.
-        </p>
-      </div>
-    </div>
+
+    <ion-list>
+      <ion-item ng-repeat="comentario in comentarios" style="padding: 0px;">
+        <div class="list card" style="margin-bottom: 10px;">
+          <div class="item item-avatar">
+            <img src="img/avatar.png">
+            <p>{{comentario.fecha}}</p>
+            <p>
+              <span class="icon ion-ios-star" ng-show="comentario.calificacion>=1" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star" ng-show="comentario.calificacion>=2" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star" ng-show="comentario.calificacion>=3" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star" ng-show="comentario.calificacion>=4" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star" ng-show="comentario.calificacion>=5" style="color: #ff9914;"></span>
+
+              <span class="icon ion-ios-star-outline" ng-show="comentario.calificacion<1" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star-outline" ng-show="comentario.calificacion<2" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star-outline" ng-show="comentario.calificacion<3" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star-outline" ng-show="comentario.calificacion<4" style="color: #ff9914;"></span>
+              <span class="icon ion-ios-star-outline" ng-show="comentario.calificacion<5" style="color: #ff9914;"></span>
+            </p>
+          </div>
+          <div class="item item-body">
+            <p> {{comentario.comentario}} </p>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
   </ion-content>
   <fab  ng-click="nuevoComentario()">
     <i class="icon ion ion-android-add"></i>
