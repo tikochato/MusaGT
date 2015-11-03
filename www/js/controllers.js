@@ -28,9 +28,82 @@ angular.module('MusaGT.controllers', [
         }
       },
       center:{
-        lat : 51.500152,
-        lng : -0.126236,
+        lat : 14.64177,
+        lng : -90.51327,
         zoom : 12
+      }
+    };
+
+    $scope.map.markers = {
+      arqueologia : {
+        lat:14.5976647,
+        lng:-90.5296395,
+        message: "Museo Nacional de Arqueología y Etnología",
+        focus: false,
+        draggable: false
+      },
+      miraflores : {
+        lat:14.62038,
+        lng:-90.55424,
+        message: "Museo Miraflores",
+        focus: false,
+        draggable: false
+      },
+      popolvuh : {
+        lat: 14.6080267,
+        lng:-90.5051404,
+        message: "Museo PopolVuh",
+        focus: false,
+        draggable: false
+      },
+      ferrocarril : {
+        lat:14.6301376,
+        lng:-90.5113273,
+        message: "Museo del Ferrocarril",
+        focus: false,
+        draggable: false
+      },
+      musac : {
+        lat:14.63871,
+        lng:-90.51074,
+        message: "Musac",
+        focus: false,
+        draggable: false
+      },
+      numismatico : {
+        lat:14.6258447,
+        lng:-90.5137542,
+        message: "Museo Numismático",
+        focus: false,
+        draggable: false
+      },
+      ninios : {
+        lat:14.5972161,
+        lng:-90.5275476,
+        message: "Museo de los Niños",
+        focus: false,
+        draggable: false
+      },
+      arquidiocesano : {
+        lat:14.64128,
+        lng:-90.51229,
+        message: "Museo Arquidiocesano de Santiago de Guatemala",
+        focus: false,
+        draggable: false
+      },
+      jardin : {
+        lat:14.6145913,
+        lng:-90.5128698,
+        message: "Museo Jardín Botánico del Centro de Estudios Conservacionistas USAC",
+        focus: false,
+        draggable: false
+      },
+      mima : {
+        lat:14.63433,
+        lng:-90.51265,
+        message: "Museo Casa MIMA",
+        focus: false,
+        draggable: false
       }
     };
 
@@ -244,9 +317,9 @@ angular.module('MusaGT.controllers', [
   $scope.nuevoComentario = function(){
     $scope.mostrarNuevoComentario = !$scope.mostrarNuevoComentario;
   }
-$scope.textoComentario ={
+  $scope.textoComentario ={
     texto:""
-};
+  };
 
   $scope.agregarComentario = function(){
     Museos.addComentario($stateParams.museoId, $scope.rangeMuseo.rating, $scope.textoComentario.texto);
@@ -273,25 +346,25 @@ $scope.textoComentario ={
   }
 
   //Valores iniciales para la directiva de calificacion
-      $scope.rangeMuseo = {
-        iconOn: 'ion-ios-star',    //Optional
-        iconHalf: 'ion-ios-star-half', //Optional
-        iconOff: 'ion-ios-star-outline',   //Optional
-        iconOnColor: 'rgb(255, 153, 20)',  //Optional
-        iconOffColor:  'rgb(255, 193, 7)',    //Optional
-        ratingLabel: "Calificar:", //Optional
-        rating:  0, //Optional
-        minRating: 0,    //Optional
-        readOnly: true, //Optional
-        callback: function(rating) {    //Mandatory
-          this.rating = rating;
-          $scope.ratingsCallback(rating);
-        }
-      };
+  $scope.rangeMuseo = {
+    iconOn: 'ion-ios-star',    //Optional
+    iconHalf: 'ion-ios-star-half', //Optional
+    iconOff: 'ion-ios-star-outline',   //Optional
+    iconOnColor: 'rgb(255, 153, 20)',  //Optional
+    iconOffColor:  'rgb(255, 193, 7)',    //Optional
+    ratingLabel: "Calificar:", //Optional
+    rating:  0, //Optional
+    minRating: 0,    //Optional
+    readOnly: true, //Optional
+    callback: function(rating) {    //Mandatory
+      this.rating = rating;
+      $scope.ratingsCallback(rating);
+    }
+  };
 
-      $scope.ratingsCallback = function(rating) {
-        console.log('Selected rating is : ' + rating);
-      };
+  $scope.ratingsCallback = function(rating) {
+    console.log('Selected rating is : ' + rating);
+  };
   //Comentarios
 
   /**
