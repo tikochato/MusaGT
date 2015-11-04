@@ -14,6 +14,11 @@ angular.module('MusaGT.services', [
   pathJardin = 'img/museos/jardin_botanico';
   pathMima = 'img/museos/mima';
 
+  var options = {
+    weekday: "long", year: "numeric", month: "short",
+    day: "numeric", hour: "2-digit", minute: "2-digit"
+  };
+
   var tipoMuseos = [{
     id: 0,
     tipo: 'Museo Arqueológico'
@@ -262,40 +267,6 @@ angular.module('MusaGT.services', [
     + '<p>Casa MIMA también mantiene un programa de exposiciones temporales temáticas. </p>'
   }];
 
-  var comentarios = [
-    {
-      id : 1,
-      idMuseo : 2,
-      fecha : new Date(),
-      calificacion : 3,
-      comentario : 'Muy buena la visita, el parqueo es amplio'
-    },{
-      id : 2,
-      idMuseo : 2,
-      fecha : new Date(),
-      calificacion : 2,
-      comentario : 'Muy caro todo, no me gusto'
-    },{
-      id : 3,
-      idMuseo : 2,
-      fecha : new Date(),
-      calificacion : 0,
-      comentario : 'Muy caro todo, no me gusto'
-    },{
-      id : 4,
-      idMuseo : 2,
-      fecha : new Date(),
-      calificacion : 5,
-      comentario : 'Felicitaciones, que viaje a la historia'
-    },{
-      id : 5,
-      idMuseo : 2,
-      fecha : new Date(),
-      calificacion : 1,
-      comentario : 'Muy caro todo, no me gusto'
-    }
-  ];
-
   return {
     all: function() {
       return museos;
@@ -325,24 +296,27 @@ angular.module('MusaGT.services', [
       setTimeout(function() {
         var tmp = httpServices.getComentarios();
         tmp.then(function(data){
-          console.log(JSON.stringify(data));
           var comentarios = JSON.parse(JSON.stringify(data));
           for(var i = 0; i < comentarios.length; i++){
             if (comentarios[i].museo == idMuseo) {
+              var fechaFormato = new Date(comentarios[i].fecha);
+              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var comentario={
                 id : comentarios[i]._id,
                 idMuseo : comentarios[i].museo,
-                fecha : new Date(comentarios[i].fecha),
+                fecha : fechaFormato,
                 calificacion : comentarios[i].calificacion,
-                comentario : 'Texto Comentario'
+                comentario : comentarios[i].comentario
               }
-              comentariosMuseo.push(comentarios[i]);
+              comentariosMuseo.unshift(comentario);
             } //if idMuseo
           }//for
         });
+        /*
         comentariosMuseo = comentariosMuseo.sort(function(a,b){
           return new Date(b.fecha) - new Date(a.fecha);
         });
+        */
         deferred.resolve(comentariosMuseo);
       }, 1000);
       return deferred.promise;

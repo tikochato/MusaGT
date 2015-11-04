@@ -194,10 +194,6 @@ angular.module('MusaGT.controllers', [
     $scope.mostrarNuevoComentario = false;
     $scope.mostrarAgregarComentario = true;
     $scope.comentarios = [];
-    var options = {
-      weekday: "long", year: "numeric", month: "short",
-      day: "numeric", hour: "2-digit", minute: "2-digit"
-    };
 
     //**Inicializa el dropDown Menu
     $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
@@ -207,7 +203,7 @@ angular.module('MusaGT.controllers', [
     });
 
     $scope.$on("$ionicView.enter", function(scopes, states) {
-      $scope.actualizarComentarios();
+      $scope.mostrarNuevoComentario = false;
     });
 
     //*** Galeria
@@ -333,9 +329,7 @@ angular.module('MusaGT.controllers', [
       var tmp= Museos.getComentarios($stateParams.museoId);
       tmp.then(function(data){
         $scope.comentarios = data;
-        $scope.comentarios.forEach(function(comentario){
-          comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
-        });
+        $scope.mostrarAgregarComentario = false;
         $scope.$broadcast('scroll.refreshComplete');
       });
 
