@@ -13,6 +13,7 @@ angular.module('MusaGT.services', [
   pathArqui = 'img/museos/arquidiocesano';
   pathJardin = 'img/museos/jardin_botanico';
   pathMima = 'img/museos/mima';
+  var imagenEvento = "img/eventos/evento.png";
 
   var options = {
     weekday: "long", year: "numeric", month: "short",
@@ -312,13 +313,8 @@ angular.module('MusaGT.services', [
             } //if idMuseo
           }//for
         });
-        /*
-        comentariosMuseo = comentariosMuseo.sort(function(a,b){
-          return new Date(b.fecha) - new Date(a.fecha);
-        });
-        */
         deferred.resolve(comentariosMuseo);
-      }, 1000);
+      }, 3000);
       return deferred.promise;
     }
     , addComentario: function(idMuseo, rating, texto){
@@ -330,8 +326,72 @@ angular.module('MusaGT.services', [
       };
       setTimeout(function() {
         httpServices.addComentario(comentario);
-      }, 1000);
+      }, 3000);
       deferred.resolve(1);
+      return deferred.promise;
+    }
+    , getEventos: function() {
+      var deferred=$q.defer();
+      var eventosMuseos = [];
+      setTimeout(function() {
+        var tmp = httpServices.getEventos();
+        tmp.then(function(data){
+          var eventos = JSON.parse(JSON.stringify(data));
+          for(var i = 0; i < eventos.length; i++){
+              var fechaFormato = new Date(eventos[i].fecha);
+              var nombre="";
+              for (var j = 0; j < museos.length; j++) {
+                if (museos[j].id === parseInt(eventos[i].museo)) {
+                  nombre=museos[j].nombre;
+                  break;
+                }
+              }
+              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
+              var evento={
+                id : eventos[i]._id,
+                idMuseo : eventos[i].museo,
+                nombre : nombre,
+                imagen : imagenEvento,
+                fecha : fechaFormato,
+                descripcion : eventos[i].descripcion
+              }
+              eventosMuseos.unshift(evento);
+          }//for
+        });
+        deferred.resolve(eventosMuseos);
+      }, 3000);
+      return deferred.promise;
+    }
+    , getEventosMuseo: function(idMuseo) {
+      var deferred=$q.defer();
+      var eventosMuseos = [];
+      setTimeout(function() {
+        var tmp = httpServices.getEventosMuseo(idMuseo);
+        tmp.then(function(data){
+          var eventos = JSON.parse(JSON.stringify(data));
+          for(var i = 0; i < eventos.length; i++){
+              var fechaFormato = new Date(eventos[i].fecha);
+              var nombre="";
+              for (var j = 0; j < museos.length; j++) {
+                if (museos[j].id === parseInt(idMuseo)) {
+                  nombre=museos[j].nombre;
+                  break;
+                }
+              }
+              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
+              var evento={
+                id : eventos[i]._id,
+                idMuseo : eventos[i].museo,
+                nombre : nombre,
+                imagen : imagenEvento,
+                fecha : fechaFormato,
+                descripcion : eventos[i].descripcion
+              }
+              eventosMuseos.unshift(evento);
+          }//for
+        });
+        deferred.resolve(eventosMuseos);
+      }, 3000);
       return deferred.promise;
     }
   };

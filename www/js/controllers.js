@@ -183,7 +183,7 @@ angular.module('MusaGT.controllers', [
 
   }) //MuseosCtrl
 
-  .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, $q, Museos, httpServices) {
+  .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, $q, Museos) {
     $scope.museo = Museos.get($stateParams.museoId);
     $scope.vm = this;
     $scope.historia = $sce.trustAsHtml($scope.museo.historia);
@@ -193,7 +193,9 @@ angular.module('MusaGT.controllers', [
     //Variables para comentarios
     $scope.mostrarNuevoComentario = false;
     $scope.mostrarAgregarComentario = true;
+    $scope.mostrarAgregarEventos = true;
     $scope.comentarios = [];
+    $scope.eventos = [];
 
     //**Inicializa el dropDown Menu
     $ionicPopover.fromTemplateUrl('templates/museos/museo-dropdownMenu.html', {
@@ -203,7 +205,7 @@ angular.module('MusaGT.controllers', [
     });
 
     $scope.$on("$ionicView.enter", function(scopes, states) {
-      $scope.mostrarNuevoComentario = false;
+
     });
 
     //*** Galeria
@@ -296,6 +298,7 @@ angular.module('MusaGT.controllers', [
   Ir a Comentarios
   */
   $scope.irComentarios = function(idMuseo) {
+    $scope.mostrarNuevoComentario = false;
     $scope.vm.popover.hide();
     $state.go("tab.museos-comentarios", {
       museoId: idMuseo
@@ -372,12 +375,27 @@ angular.module('MusaGT.controllers', [
     $state.go("tab.museos-eventos", {
       museoId: idMuseo
     });
-  }; //Eventos
+  };
+  $scope.actualizarEventos = function(){
+    try{
+      var tmp= Museos.getEventosMuseo($stateParams.museoId);
+      tmp.then(function(data){
+        $scope.eventos = data;
+        $scope.mostrarAgregarEventos = false;
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    }catch(error){
+      console.log(error);
+    }
+  }
+  //Eventos
 
 }) //MuseoCtrl
 
-.controller('EventosCtrl', function($scope) {
+.controller('EventosCtrl', function($scope, Museos) {
   $scope.showSearchBar = false;
+  $scope.mostrarAgregarEventos = true;
+  $scope.eventos = [];
 
   $scope.$on('$ionicView.enter', function(e) {
     $scope.searchBar.searchText = "";
@@ -394,5 +412,18 @@ angular.module('MusaGT.controllers', [
       $scope.showSearchBar = true;
     }
   };
+
+  $scope.actualizarEventos = function(){
+    try{
+      var tmp= Museos.getEventos();
+      tmp.then(function(data){
+        $scope.eventos = data;
+        $scope.mostrarAgregarEventos = false;
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    }catch(error){
+      console.log(error);
+    }
+  }
 
 }); //EventosCtrl

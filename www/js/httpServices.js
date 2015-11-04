@@ -62,6 +62,61 @@ angular.module('MusaGT.httpServices', [])
       );
       return deferred.promise;
     },
+    /*
+    Se obtienen todos los eventos
+    */
+    getEventos:function(){
+      var deferred=$q.defer();
+      $http({
+        method  : 'GET',
+        url     :  ruta + '/eventos',
+        data    :
+                {
 
+                },
+        headers :
+                {
+                  'Content-Type': 'application/json',
+                }
+      }).success(
+        function(response){
+          deferred.resolve(response);
+        }
+      ).error(
+        function(response){
+          console.log("getEventos: "+JSON.stringify(response));
+          deferred.reject(response);
+          }
+      );
+      return deferred.promise;
+    },
+    /*
+    Se obtienen eventos para un museo
+    */
+    getEventosMuseo:function(idMuseo){
+      var deferred=$q.defer();
+      $http({
+        method  : 'POST',
+        url     :  ruta + '/eventos/museo',
+        data    :
+                {
+                  museo: idMuseo
+                },
+        headers :
+                {
+                  'Content-Type': 'application/json',
+                }
+      }).success(
+        function(response){
+          deferred.resolve(response);
+        }
+      ).error(
+        function(response){
+          console.log("getEventosMuseo: "+JSON.stringify(response));
+          deferred.reject(response);
+          }
+      );
+      return deferred.promise;
+    },
   }
 });
