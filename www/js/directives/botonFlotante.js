@@ -37,9 +37,7 @@ angular.module('fab-component', [])
                 scroll = window.ionic?e.detail.scrollTop:e.target.scrollTop;
                 if(liveDisplace){
                     current = scroll >= 0 ? Math.min(max, Math.max(0, current + scroll - prevScroll)) : 0;
-                    window.requestAnimationFrame(function () {
-                        element.css("transform","translate3d(0, " + current + "px, 0)");
-                    });
+                    
                 }
                 else{
                     if (current < scroll) {

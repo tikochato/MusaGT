@@ -1,6 +1,8 @@
-angular.module('MusaGT.services', [])
+angular.module('MusaGT.services', [
+  'MusaGT.httpServices'
+])
 
-.factory('Museos', function() {
+.factory('Museos', function($q, httpServices) {
   pathArqueologia = 'img/museos/arqueologia_y_etnologia';
   pathMira = 'img/museos/miraflores';
   pathPopol = 'img/museos/popolvuh';
@@ -318,26 +320,45 @@ angular.module('MusaGT.services', [])
       return null;
     }
     , getComentarios: function(idMuseo) {
+      var deferred=$q.defer();
       var comentariosMuseo = [];
-      for (var i = 0; i < comentarios.length; i++) {
-        if (comentarios[i].idMuseo === parseInt(idMuseo)) {
-          comentariosMuseo.push(comentarios[i]);
-        }
-      }
-      comentariosMuseo = comentariosMuseo.sort(function(a,b){
-        return new Date(b.fecha) - new Date(a.fecha);
-      });
-      return comentariosMuseo;
+      setTimeout(function() {
+        var tmp = httpServices.getComentarios();
+        tmp.then(function(data){
+          console.log(JSON.stringify(data));
+          var comentarios = JSON.parse(JSON.stringify(data));
+          for(var i = 0; i < comentarios.length; i++){
+            if (comentarios[i].museo == idMuseo) {
+              var comentario={
+                id : comentarios[i]._id,
+                idMuseo : comentarios[i].museo,
+                fecha : new Date(comentarios[i].fecha),
+                calificacion : comentarios[i].calificacion,
+                comentario : 'Texto Comentario'
+              }
+              comentariosMuseo.push(comentarios[i]);
+            } //if idMuseo
+          }//for
+        });
+        comentariosMuseo = comentariosMuseo.sort(function(a,b){
+          return new Date(b.fecha) - new Date(a.fecha);
+        });
+        deferred.resolve(comentariosMuseo);
+      }, 1000);
+      return deferred.promise;
     }
     , addComentario: function(idMuseo, rating, texto){
+      var deferred=$q.defer();
       var comentario = {
-        id : 6,
-        idMuseo : idMuseo,
-        fecha : new Date(),
-        calificacion : rating,
-        comentario : texto
-      }
-      comentarios.push(comentario);
+        museo:idMuseo,
+        calificacion: rating,
+        comentario: texto
+      };
+      setTimeout(function() {
+        httpServices.addComentario(comentario);
+      }, 1000);
+      deferred.resolve(1);
+      return deferred.promise;
     }
   };
 });

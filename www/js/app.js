@@ -12,7 +12,8 @@ angular.module('MusaGT', ['ionic'
 , 'ngCordova'
 , 'igTruncate'
 ,'MusaGT.controllers'
-, 'MusaGT.services'])
+, 'MusaGT.services'
+, 'MusaGT.httpServices'])
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');

@@ -1,5 +1,6 @@
 angular.module('MusaGT.controllers', [
   'MusaGT.services'
+  , 'MusaGT.httpServices'
   , 'ionic.contrib.ui.hscrollcards'
   , 'ngImageViewer'
   , 'leaflet-directive',
@@ -182,7 +183,7 @@ angular.module('MusaGT.controllers', [
 
   }) //MuseosCtrl
 
-  .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, Museos) {
+  .controller('MuseoCtrl', function($scope, $state, $stateParams, $ionicPopover, $ionicModal, $timeout, $sce, $q, Museos, httpServices) {
     $scope.museo = Museos.get($stateParams.museoId);
     $scope.vm = this;
     $scope.historia = $sce.trustAsHtml($scope.museo.historia);
@@ -206,16 +207,7 @@ angular.module('MusaGT.controllers', [
     });
 
     $scope.$on("$ionicView.enter", function(scopes, states) {
-      try{
-        $scope.comentarios = Museos.getComentarios($stateParams.museoId);
-        $scope.comentarios.forEach(function(comentario){
-          comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
-        });
-        $scope.mostrarAgregarComentario = $scope.comentarios.length <= 0;
-        $scope.$apply();
-      }catch(error){
-        console.log(error);
-      }
+      $scope.actualizarComentarios();
     });
 
     //*** Galeria
@@ -337,12 +329,23 @@ angular.module('MusaGT.controllers', [
   }
 
   $scope.actualizarComentarios = function(){
-    $scope.$apply(function() {
-      $scope.comentarios = Museos.getComentarios($stateParams.museoId);
-    });
-    $scope.textoComentario.texto="";
-    $scope.mostrarNuevoComentario = false;
-    $scope.$broadcast('scroll.refreshComplete');
+    try{
+      var tmp= Museos.getComentarios($stateParams.museoId);
+      tmp.then(function(data){
+        $scope.comentarios = data;
+        $scope.comentarios.forEach(function(comentario){
+          comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+
+      console.log($scope.comentarios.length);
+      $scope.mostrarAgregarComentario = $scope.comentarios.length <= 0;
+      $scope.textoComentario.texto="";
+      $scope.mostrarNuevoComentario = false;
+    }catch(error){
+      console.log(error);
+    }
   }
 
   //Valores iniciales para la directiva de calificacion
