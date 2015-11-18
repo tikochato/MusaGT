@@ -301,7 +301,7 @@ angular.module('MusaGT.services', [
           for(var i = 0; i < comentarios.length; i++){
             if (comentarios[i].museo == idMuseo) {
               var fechaFormato = new Date(comentarios[i].fecha);
-              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
+              //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var comentario={
                 id : comentarios[i]._id,
                 idMuseo : comentarios[i].museo,
@@ -346,7 +346,7 @@ angular.module('MusaGT.services', [
                   break;
                 }
               }
-              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
+              //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var evento={
                 id : eventos[i]._id,
                 idMuseo : eventos[i].museo,
@@ -378,7 +378,7 @@ angular.module('MusaGT.services', [
                   break;
                 }
               }
-              fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
+              //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var evento={
                 id : eventos[i]._id,
                 idMuseo : eventos[i].museo,

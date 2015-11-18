@@ -3,27 +3,71 @@
     <button class="button button-icon ion-ios-search" ng-click="searchBar()"></button>
   </button>
 </ion-nav-buttons>
-<ion-content></ion-content>
-<ion-pane style='top: 50px;'>
+<ion-content>
   <div class="body-tumblr bar bar-header item-input-inset" ng-show="showSearchBar">
-      <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input ng-model="searchBar.searchText" placeholder="{{LABEL_SEARCH}}" type="search">
-      </label>
-      <i class="icon placeholder-icon ion-ios-close-outline" on-touch="searchBar.searchText = ''"></i>
-    </div>
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input ng-model="searchBar.searchText" placeholder="{{LABEL_SEARCH}}" type="search">
+    </label>
+    <i class="icon placeholder-icon ion-ios-close-outline" on-touch="searchBar.searchText = ''"></i>
+  </div>
   <div class="list">
     <div class="item item-divider">
-      <hscroller>
-        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos1 | filter:searchBar.searchText" type="item-text-wrap"></hcard>
-      </a>
-    </hscroller>
+      <span class="gray">Museos Arqueológicos</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosArqueologico | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Museos de Patrimonio Industrial</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosIndustrial | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Museos de Patrimonio Histórico</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosHistorico | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Museos de Ciencia y Tecnología</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosCiencia | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Museos Religiosos</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosReligion | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Museos de Patrimonio Natural</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosNatural | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
+    <div class="item item-divider">
+      <span class="gray">Casas Museo</span>
+    </div>
+    <div class="item">
+      <ion-scroll direction="x">
+        <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museosCasa | filter:searchBar.searchText" type="item-text-wrap"></hcard>
+      </ion-scroll>
+    </div>
   </div>
-  <div class="item item-divider">
-    <hscroller>
-      <hcard desc="{{museo.tipoMuseo}}" image="{{museo.imagen}}" index="{{$index}}" name="{{museo.nombre}}" ng-click="irMuseo({{museo.id}})" ng-repeat="museo in museos2 | filter:searchBar.searchText" type="item-text-wrap"></hcard>
-    </a>
-  </hscroller>
-</div>
-</ion-pane>
+</ion-content>
 </ion-view>

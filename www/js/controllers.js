@@ -117,13 +117,15 @@ angular.module('MusaGT.controllers', [
 
     $scope.locate = function(){
       console.log("locate");
+      var posOptions = {timeout: 10000, enableHighAccuracy: true};
       $cordovaGeolocation
-      .getCurrentPosition()
+      .getCurrentPosition(posOptions)
       .then(function (position) {
+        console.log("locate then");
         $scope.map.center.lat  = position.coords.latitude;
         $scope.map.center.lng = position.coords.longitude;
         $scope.map.center.zoom = 15;
-
+        console.log("antes now");
         $scope.map.markers.now = {
           lat:position.coords.latitude,
           lng:position.coords.longitude,
@@ -133,27 +135,55 @@ angular.module('MusaGT.controllers', [
         };
         console.log($scope.map);
 
-
       }, function(err) {
         // error
         console.log("Location error!");
-        console.log(err);
+        console.log(err.message);
+      })
+      .finally(function(){
+        console.log("finally");
       });
 
     };
-
-
-
   }) //MapaCtrl
 
   .controller('MuseosCtrl', function($scope, $state, Museos) {
     $scope.showSearchBar = false;
     var museos = Museos.all();
+    $scope.museosArqueologico = [];
+    $scope.museosIndustrial = [];
+    $scope.museosHistorico = [];
+    $scope.museosCiencia = [];
+    $scope.museosReligion = [];
+    $scope.museosNatural = [];
+    $scope.museosCasa = [];
     for (i = 0; i < museos.length; i++) {
+      var tipoActual = museos[i].tipoMuseo;
       museos[i].tipoMuseo = Museos.getTipo(museos[i].tipoMuseo).tipo;
+      switch(tipoActual){
+        case 0:
+        $scope.museosArqueologico.push(museos[i]);
+        break;
+        case 1:
+        $scope.museosIndustrial.push(museos[i]);
+        break;
+        case 2:
+        $scope.museosHistorico.push(museos[i]);
+        break;
+        case 3:
+        $scope.museosCiencia.push(museos[i]);
+        break;
+        case 4:
+        $scope.museosReligion.push(museos[i]);
+        break;
+        case 5:
+        $scope.museosNatural.push(museos[i]);
+        break;
+        case 6:
+        $scope.museosCasa.push(museos[i]);
+        break;
+      }
     }
-    $scope.museos1 = museos.slice(0, (museos.length / 2));
-    $scope.museos2 = museos.slice((museos.length / 2), (museos.length));
 
     $scope.$on('$ionicView.enter', function(e) {
       $scope.museos = Museos.all();
@@ -332,7 +362,7 @@ angular.module('MusaGT.controllers', [
       var tmp= Museos.getComentarios($stateParams.museoId);
       tmp.then(function(data){
         $scope.comentarios = data;
-        $scope.mostrarAgregarComentario = false;
+        //$scope.mostrarAgregarComentario = false;
         $scope.$broadcast('scroll.refreshComplete');
       });
 
@@ -381,7 +411,7 @@ angular.module('MusaGT.controllers', [
       var tmp= Museos.getEventosMuseo($stateParams.museoId);
       tmp.then(function(data){
         $scope.eventos = data;
-        $scope.mostrarAgregarEventos = false;
+        //$scope.mostrarAgregarEventos = false;
         $scope.$broadcast('scroll.refreshComplete');
       });
     }catch(error){
@@ -418,7 +448,7 @@ angular.module('MusaGT.controllers', [
       var tmp= Museos.getEventos();
       tmp.then(function(data){
         $scope.eventos = data;
-        $scope.mostrarAgregarEventos = false;
+        //$scope.mostrarAgregarEventos = false;
         $scope.$broadcast('scroll.refreshComplete');
       });
     }catch(error){

@@ -3,6 +3,12 @@
   color: #bdbdbd;
 }
 
+.bar-positive .button {
+    border-color: #7070db;
+    background-color: #2E3F53;
+    color: #FFF;
+}
+
 .body-tumblr .card .item, .body-tumblr .item.item-input {
   background-color: #36465D;
 }
