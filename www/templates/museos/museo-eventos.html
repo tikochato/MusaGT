@@ -15,7 +15,7 @@
     <ion-refresher pulling-text="Desliza para actualizar..." on-refresh="actualizarEventos()">
     </ion-refresher>
 
-    <div class="card" ng-show="mostrarAgregarEventos">
+    <div class="card" ng-show="eventos.length<=0">
       <div class="item item-text-wrap" style="color: #B2B2B2;">No hay eventos próximos para este museo. Puedes probar recargar la página</div>
     </div>
 

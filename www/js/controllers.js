@@ -235,6 +235,18 @@ angular.module('MusaGT.controllers', [
     });
 
     $scope.$on("$ionicView.enter", function(scopes, states) {
+      console.log(states.stateName);
+      if(states.stateName == 'tab.museos-comentarios'){
+        Museos.getComentariosBDD($stateParams.museoId)
+        .then(function(data){
+          $scope.comentarios = data;
+        });
+      }else if(states.stateName == 'tab.museos-eventos'){
+        Museos.getEventosMuseoBDD($stateParams.museoId)
+        .then(function(data){
+          $scope.eventos = data;
+        });
+      }
 
     });
 
@@ -344,30 +356,21 @@ angular.module('MusaGT.controllers', [
 
   $scope.agregarComentario = function(){
     Museos.addComentario($stateParams.museoId, $scope.rangeMuseo.rating, $scope.textoComentario.texto);
-    var comentario = {
-      id : 6,
-      idMuseo : $stateParams.museoId,
-      fecha : new Date(),
-      calificacion : $scope.rangeMuseo.rating,
-      comentario : $scope.textoComentario.texto
-    }
-    comentario.fecha = comentario.fecha.toLocaleTimeString("es-gt", options);
-    $scope.comentarios.unshift(comentario);
     $scope.textoComentario.texto="";
     $scope.mostrarNuevoComentario = false;
+    $scope.actualizarComentarios();
   }
 
   $scope.actualizarComentarios = function(){
     try{
-      var tmp= Museos.getComentarios($stateParams.museoId);
-      tmp.then(function(data){
-        $scope.comentarios = data;
-        //$scope.mostrarAgregarComentario = false;
-        $scope.$broadcast('scroll.refreshComplete');
+      Museos.getComentarios()
+      .then(function(data){
+        Museos.getComentariosBDD($stateParams.museoId)
+        .then(function(datos){
+          $scope.comentarios = datos;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
       });
-
-      console.log($scope.comentarios.length);
-      $scope.mostrarAgregarComentario = $scope.comentarios.length <= 0;
       $scope.textoComentario.texto="";
       $scope.mostrarNuevoComentario = false;
     }catch(error){
@@ -408,11 +411,13 @@ angular.module('MusaGT.controllers', [
   };
   $scope.actualizarEventos = function(){
     try{
-      var tmp= Museos.getEventosMuseo($stateParams.museoId);
-      tmp.then(function(data){
-        $scope.eventos = data;
-        //$scope.mostrarAgregarEventos = false;
-        $scope.$broadcast('scroll.refreshComplete');
+      Museos.getEventos()
+      .then(function(data){
+        Museos.getEventosMuseoBDD($stateParams.museoId)
+        .then(function(datos){
+          $scope.eventos = datos;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
       });
     }catch(error){
       console.log(error);
@@ -429,6 +434,10 @@ angular.module('MusaGT.controllers', [
 
   $scope.$on('$ionicView.enter', function(e) {
     $scope.searchBar.searchText = "";
+    Museos.getEventosMuseosBDD()
+    .then(function(datos){
+      $scope.eventos = datos;
+    });
   });
 
   /**
@@ -445,10 +454,9 @@ angular.module('MusaGT.controllers', [
 
   $scope.actualizarEventos = function(){
     try{
-      var tmp= Museos.getEventos();
-      tmp.then(function(data){
-        $scope.eventos = data;
-        //$scope.mostrarAgregarEventos = false;
+      Museos.getEventosMuseoBDD($stateParams.museoId)
+      .then(function(datos){
+        $scope.eventos = datos;
         $scope.$broadcast('scroll.refreshComplete');
       });
     }catch(error){

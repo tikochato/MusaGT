@@ -7,7 +7,7 @@
     <ion-refresher pulling-text="Desliza para actualizar..." on-refresh="actualizarComentarios()">
     </ion-refresher>
 
-    <div class="card" ng-show="mostrarAgregarComentario">
+    <div class="card" ng-show="comentarios.length<=0">
       <div class="item item-text-wrap" style="color: #B2B2B2;">Puedes recargar la página o agregar un comentario nuevo!</div>
     </div>
 
@@ -28,7 +28,7 @@
         <div class="list card" style="margin-bottom: 10px;">
           <div class="item item-avatar">
             <img src="img/avatar.png">
-            <p>{{comentario.fecha}}</p>
+            <p>{{comentario.fecha | date:"dd/MM/yyyy '-' h:mma"}}</p>
             <p>
               <span class="icon ion-ios-star" ng-show="comentario.calificacion>=1" style="color: #ff9914;"></span>
               <span class="icon ion-ios-star" ng-show="comentario.calificacion>=2" style="color: #ff9914;"></span>

@@ -13,13 +13,15 @@ angular.module('MusaGT', ['ionic'
 , 'igTruncate'
 ,'MusaGT.controllers'
 , 'MusaGT.services'
-, 'MusaGT.httpServices'])
+, 'MusaGT.httpServices'
+, 'MusaGT.sqliteServices'
+])
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaSQLite, sqliteServices) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -32,6 +34,7 @@ angular.module('MusaGT', ['ionic'
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    sqliteServices.startDatabase();
   });
 })
 

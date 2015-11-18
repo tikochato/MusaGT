@@ -1,8 +1,9 @@
 angular.module('MusaGT.services', [
   'MusaGT.httpServices'
+  , 'MusaGT.sqliteServices'
 ])
 
-.factory('Museos', function($q, httpServices) {
+.factory('Museos', function($q, httpServices, sqliteServices) {
   pathArqueologia = 'img/museos/arqueologia_y_etnologia';
   pathMira = 'img/museos/miraflores';
   pathPopol = 'img/museos/popolvuh';
@@ -291,7 +292,7 @@ angular.module('MusaGT.services', [
       }
       return null;
     }
-    , getComentarios: function(idMuseo) {
+    , getComentarios: function() {
       var deferred=$q.defer();
       var comentariosMuseo = [];
       setTimeout(function() {
@@ -299,8 +300,7 @@ angular.module('MusaGT.services', [
         tmp.then(function(data){
           var comentarios = JSON.parse(JSON.stringify(data));
           for(var i = 0; i < comentarios.length; i++){
-            if (comentarios[i].museo == idMuseo) {
-              var fechaFormato = new Date(comentarios[i].fecha);
+            var fechaFormato = new Date(comentarios[i].fecha);
               //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var comentario={
                 id : comentarios[i]._id,
@@ -309,8 +309,7 @@ angular.module('MusaGT.services', [
                 calificacion : comentarios[i].calificacion,
                 comentario : comentarios[i].comentario
               }
-              comentariosMuseo.unshift(comentario);
-            } //if idMuseo
+              sqliteServices.addComentario(comentario);
           }//for
         });
         deferred.resolve(comentariosMuseo);
@@ -334,63 +333,60 @@ angular.module('MusaGT.services', [
       var deferred=$q.defer();
       var eventosMuseos = [];
       setTimeout(function() {
-        var tmp = httpServices.getEventos();
-        tmp.then(function(data){
+        httpServices.getEventos()
+        .then(function(data){
           var eventos = JSON.parse(JSON.stringify(data));
+          console.log("eventos.length "+eventos.length);
           for(var i = 0; i < eventos.length; i++){
               var fechaFormato = new Date(eventos[i].fecha);
-              var nombre="";
-              for (var j = 0; j < museos.length; j++) {
-                if (museos[j].id === parseInt(eventos[i].museo)) {
-                  nombre=museos[j].nombre;
-                  break;
-                }
-              }
-              //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
               var evento={
                 id : eventos[i]._id,
                 idMuseo : eventos[i].museo,
-                nombre : nombre,
+                nombre : eventos[i].nombre,
                 imagen : imagenEvento,
                 fecha : fechaFormato,
                 descripcion : eventos[i].descripcion
               }
-              eventosMuseos.unshift(evento);
+              sqliteServices.addEvento(evento);
           }//for
         });
         deferred.resolve(eventosMuseos);
       }, 3000);
       return deferred.promise;
     }
-    , getEventosMuseo: function(idMuseo) {
+    , getComentariosBDD: function(idMuseo) {
+      var deferred=$q.defer();
+      var comentariosMuseo = [];
+      setTimeout(function() {
+        var tmp = sqliteServices.getComentarios(idMuseo);
+        tmp.then(function(data){
+          comentariosMuseo = data;
+          deferred.resolve(comentariosMuseo);
+        });
+      }, 3000);
+      return deferred.promise;
+    }
+    , getEventosMuseosBDD: function() {
+      var deferred=$q.defer();
+      var eventosMuseo = [];
+      setTimeout(function() {
+        sqliteServices.getEventosMuseos()
+        .then(function(data){
+          eventosMuseo = data;
+          deferred.resolve(eventosMuseo);
+        });
+      }, 3000);
+      return deferred.promise;
+    }
+    , getEventosMuseoBDD: function(idMuseo) {
       var deferred=$q.defer();
       var eventosMuseos = [];
       setTimeout(function() {
-        var tmp = httpServices.getEventosMuseo(idMuseo);
-        tmp.then(function(data){
-          var eventos = JSON.parse(JSON.stringify(data));
-          for(var i = 0; i < eventos.length; i++){
-              var fechaFormato = new Date(eventos[i].fecha);
-              var nombre="";
-              for (var j = 0; j < museos.length; j++) {
-                if (museos[j].id === parseInt(idMuseo)) {
-                  nombre=museos[j].nombre;
-                  break;
-                }
-              }
-              //fechaFormato=fechaFormato.toLocaleTimeString("es-gt", options);
-              var evento={
-                id : eventos[i]._id,
-                idMuseo : eventos[i].museo,
-                nombre : nombre,
-                imagen : imagenEvento,
-                fecha : fechaFormato,
-                descripcion : eventos[i].descripcion
-              }
-              eventosMuseos.unshift(evento);
-          }//for
+        sqliteServices.getEventosMuseo(idMuseo)
+        .then(function(data){
+          eventosMuseo = data;
+          deferred.resolve(eventosMuseos);
         });
-        deferred.resolve(eventosMuseos);
       }, 3000);
       return deferred.promise;
     }
