@@ -375,6 +375,7 @@ angular.module('MusaGT.controllers', [
       $scope.mostrarNuevoComentario = false;
     }catch(error){
       console.log(error);
+      $scope.$broadcast('scroll.refreshComplete');
     }
   }
 
@@ -421,6 +422,7 @@ angular.module('MusaGT.controllers', [
       });
     }catch(error){
       console.log(error);
+      $scope.$broadcast('scroll.refreshComplete');
     }
   }
   //Eventos
@@ -454,13 +456,14 @@ angular.module('MusaGT.controllers', [
 
   $scope.actualizarEventos = function(){
     try{
-      Museos.getEventosMuseoBDD($stateParams.museoId)
+      Museos.getEventosMuseoBDD()
       .then(function(datos){
         $scope.eventos = datos;
         $scope.$broadcast('scroll.refreshComplete');
       });
     }catch(error){
       console.log(error);
+      $scope.$broadcast('scroll.refreshComplete');
     }
   }
 
