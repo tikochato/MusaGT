@@ -68,3 +68,29 @@ Estilo para estrellas en calificacion
 .ionic_ratings .icon {
   font-size: 50px;
 }
+
+/**Estilos para botones de scroll
+*/
+.scrollArriba {
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: 10%;
+   padding-right: 0px !important;
+}
+.scrollAbajo {
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   width: 10%;
+   padding-right: 0px !important;
+}
+
+/**
+Para imagen centrada en plugin ionic-gallery
+*/
+.image-center {
+    position: relative;
+    top: 15%;
+    transform: none;
+}
