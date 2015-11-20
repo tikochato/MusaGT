@@ -11,8 +11,7 @@ angular.module('MusaGT.controllers', [
 
 .controller('MapaCtrl', function(
   $scope,
-  $cordovaGeolocation    ) {
-
+  $cordovaGeolocation) {
 
     $scope.map = {
       defaults: {
@@ -116,16 +115,14 @@ angular.module('MusaGT.controllers', [
     };
 
     $scope.locate = function(){
-      console.log("locate");
+      console.log($scope.map);
       var posOptions = {timeout: 10000, enableHighAccuracy: true};
       $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
-        console.log("locate then");
         $scope.map.center.lat  = position.coords.latitude;
         $scope.map.center.lng = position.coords.longitude;
         $scope.map.center.zoom = 15;
-        console.log("antes now");
         $scope.map.markers.now = {
           lat:position.coords.latitude,
           lng:position.coords.longitude,
@@ -133,15 +130,11 @@ angular.module('MusaGT.controllers', [
           focus: true,
           draggable: false
         };
-        console.log($scope.map);
 
       }, function(err) {
         // error
         console.log("Location error!");
         console.log(err.message);
-      })
-      .finally(function(){
-        console.log("finally");
       });
 
     };
@@ -456,10 +449,13 @@ angular.module('MusaGT.controllers', [
 
   $scope.actualizarEventos = function(){
     try{
-      Museos.getEventosMuseoBDD()
-      .then(function(datos){
-        $scope.eventos = datos;
-        $scope.$broadcast('scroll.refreshComplete');
+      Museos.getEventos()
+      .then(function(data){
+        Museos.getEventosMuseosBDD()
+        .then(function(datos){
+          $scope.eventos = datos;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
       });
     }catch(error){
       console.log(error);
