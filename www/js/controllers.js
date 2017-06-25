@@ -31,6 +31,19 @@ angular.module('MusaGT.controllers', [
         lat : 14.64177,
         lng : -90.51327,
         zoom : 12
+      },
+      icon: {
+        iconUrl: 'img/marker-icon.png',
+        iconRetinaUrl: 'img/marker-icon.png',
+        iconSize: [29, 24],
+        iconAnchor: [9, 21],
+        popupAnchor: [0, -14],
+        shadow:{
+          url: 'img/marker-shadow.png',
+            retinaUrl: 'mg/marker-shadow.png',
+            size: [41, 41],
+            anchor: [12, 40]
+        }
       }
     };
 
@@ -132,6 +145,7 @@ angular.module('MusaGT.controllers', [
         };
 
       }, function(err) {
+        console.log(JSON.stringify(err));
         // error
         console.log("Location error!");
         console.log(err.message);
