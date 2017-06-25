@@ -47,6 +47,19 @@ angular.module('MusaGT.controllers', [
       }
     };
 
+    $scope.$on('leafletDirectiveMap.click', function(event){
+        /*Codigo*/
+    });
+
+    $scope.$on('leafletDirectiveMap.popupopen', function(event, data){
+
+        var position = data.leafletEvent.popup._latlng;
+        var label = encodeURI('Abrir maps');
+        launchnavigator.navigate([position.lat,position.lng], {
+           //start: "50.342847, -4.749904"
+        });
+    });
+
     $scope.map.markers = {
       arqueologia : {
         lat:14.5976647,
