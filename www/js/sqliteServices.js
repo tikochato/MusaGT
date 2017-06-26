@@ -112,7 +112,6 @@ angular.module('MusaGT.sqliteServices', [])
         var query = "INSERT OR REPLACE INTO Evento (evento, nombre, museo, imagen, descripcion, fecha) "
         +" VALUES (?,?,?,?,?,?)";
         $cordovaSQLite.execute(db, query, [evento.id, evento.nombre, evento.idMuseo, evento.imagen, evento.descripcion, evento.fecha]).then(function(res) {
-            console.log("Evento creado -> " + comentario.id);
             return 1;
           }, function (err) {
             console.error("addEvento - sqliteServices: "+err.message);
